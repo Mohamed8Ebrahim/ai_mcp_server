@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0"   stop-color="#0b1f3a"/>
+      <stop offset="0.55" stop-color="#123a6b"/>
+      <stop offset="1"   stop-color="#1e5fa8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#16b8a6"/>
+      <stop offset="1" stop-color="#6d5efc"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded app background -->
+  <rect x="16" y="16" width="480" height="480" rx="110" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="110" fill="none" stroke="#ffffff" stroke-opacity="0.06" stroke-width="2"/>
+
+  <!-- Connection links from the central hub to the satellite nodes -->
+  <g stroke="#ffffff" stroke-opacity="0.55" stroke-width="9" stroke-linecap="round">
+    <line x1="256" y1="256" x2="150" y2="150"/>
+    <line x1="256" y1="256" x2="362" y2="150"/>
+    <line x1="256" y1="256" x2="150" y2="362"/>
+    <line x1="256" y1="256" x2="362" y2="362"/>
+  </g>
+
+  <!-- Satellite nodes (AI tools / data sources) -->
+  <g filter="url(#soft)">
+    <circle cx="150" cy="150" r="42" fill="#ffffff"/>
+    <circle cx="362" cy="150" r="42" fill="#ffffff"/>
+    <circle cx="150" cy="362" r="42" fill="#ffffff"/>
+    <circle cx="362" cy="362" r="42" fill="#ffffff"/>
+  </g>
+  <g fill="#1e5fa8">
+    <circle cx="150" cy="150" r="18"/>
+    <circle cx="362" cy="150" r="18"/>
+    <circle cx="150" cy="362" r="18"/>
+    <circle cx="362" cy="362" r="18"/>
+  </g>
+
+  <!-- Central hub node -->
+  <circle cx="256" cy="256" r="86" fill="url(#accent)" filter="url(#soft)"/>
+  <circle cx="256" cy="256" r="86" fill="none" stroke="#ffffff" stroke-opacity="0.85" stroke-width="6"/>
+
+  <!-- Spark / connector glyph inside the hub -->
+  <path d="M262 210 l-40 62 h28 l-12 48 l44 -66 h-28 z"
+        fill="#ffffff"/>
+</svg>

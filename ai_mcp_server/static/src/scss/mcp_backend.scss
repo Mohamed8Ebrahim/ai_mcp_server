@@ -1,0 +1,385 @@
+// =====================================================================
+//  Odoo MCP Server — Professional backend theme
+//  Scoped under .o_mcp_form / .o_mcp_list / .o_mcp_wizard so it never
+//  leaks into the rest of the Odoo backend.
+// =====================================================================
+
+.o_mcp_form,
+.o_mcp_list,
+.o_mcp_wizard {
+    --mcp-deep: #0b1f3a;
+    --mcp-primary-dark: #123a6b;
+    --mcp-primary: #1e5fa8;
+    --mcp-accent: #16b8a6;      // teal
+    --mcp-accent-2: #6d5efc;    // indigo
+    --mcp-bg: #f4f7fb;
+    --mcp-border: #e4eaf2;
+    --mcp-danger: #e5484d;
+    --mcp-ok: #17a673;
+    --mcp-radius: 14px;
+    --mcp-shadow: 0 8px 30px rgba(18, 58, 107, .10);
+}
+
+// ---------------------------------------------------------------------
+//  Keyframes
+// ---------------------------------------------------------------------
+@keyframes mcpFadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes mcpPop {
+    0%   { transform: scale(.96); opacity: 0; }
+    60%  { transform: scale(1.02); }
+    100% { transform: scale(1); opacity: 1; }
+}
+@keyframes mcpPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(23, 166, 115, .55); }
+    70%  { box-shadow: 0 0 0 8px rgba(23, 166, 115, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(23, 166, 115, 0); }
+}
+@keyframes mcpSheen {
+    0%   { background-position: -120% 0; }
+    100% { background-position: 220% 0; }
+}
+
+// =====================================================================
+//  FORM
+// =====================================================================
+.o_mcp_form {
+
+    .o_form_sheet {
+        position: relative;
+        border: 1px solid var(--mcp-border);
+        border-radius: var(--mcp-radius);
+        box-shadow: var(--mcp-shadow);
+        // `backwards` (not `both`) so no transform lingers after the animation —
+        // a lingering transform creates a stacking context that traps dropdowns.
+        animation: mcpFadeUp .45s cubic-bezier(.2, .7, .3, 1) backwards;
+
+        // Gradient identity strip on top of every MCP form sheet
+        &::before {
+            content: "";
+            position: absolute;
+            inset-inline: 0;
+            top: 0;
+            height: 5px;
+            border-radius: var(--mcp-radius) var(--mcp-radius) 0 0;
+            background: linear-gradient(90deg, var(--mcp-deep), var(--mcp-primary) 45%, var(--mcp-accent));
+            background-size: 200% 100%;
+            animation: mcpSheen 6s linear infinite;
+        }
+    }
+
+    // Big record title
+    .oe_title h1 .o_input {
+        font-weight: 700;
+        color: var(--mcp-primary-dark);
+    }
+
+    // Section headers ( <group string="..."> )
+    .o_horizontal_separator {
+        color: var(--mcp-primary-dark) !important;
+        font-weight: 700;
+        letter-spacing: .3px;
+        padding-inline-start: 12px;
+        border-inline-start: 4px solid var(--mcp-primary);
+        margin-bottom: .5rem;
+        text-transform: none;
+    }
+
+    // Inline helper descriptions under fields
+    .text-muted.small {
+        display: block;
+        margin-top: 2px;
+        line-height: 1.35;
+        color: #7a879e !important;
+    }
+
+    // Notebook tabs
+    .o_notebook .nav-tabs {
+        border-bottom: 2px solid var(--mcp-border);
+        .nav-link {
+            border: 0;
+            font-weight: 600;
+            color: #5b6b86;
+            transition: color .2s ease, background .2s ease;
+            border-radius: 8px 8px 0 0;
+            &:hover { color: var(--mcp-primary); background: rgba(30, 95, 168, .06); }
+            &.active {
+                color: var(--mcp-primary-dark);
+                background: transparent;
+                box-shadow: inset 0 -3px 0 0 var(--mcp-primary);
+            }
+        }
+    }
+
+    // Stat buttons
+    .oe_button_box .oe_stat_button {
+        transition: transform .18s ease, box-shadow .18s ease;
+        border-radius: 10px;
+        &:hover { transform: translateY(-2px); box-shadow: var(--mcp-shadow); }
+        .o_stat_value { color: var(--mcp-primary); font-weight: 700; }
+    }
+
+    // Buttons (header + footer) — branded gradient primary
+    .btn-primary {
+        background: linear-gradient(135deg, var(--mcp-primary), var(--mcp-primary-dark));
+        border: 0;
+        box-shadow: 0 4px 12px rgba(30, 95, 168, .25);
+        transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+        &:hover { transform: translateY(-1px); filter: brightness(1.06); box-shadow: 0 6px 18px rgba(30, 95, 168, .35); }
+        &:active { transform: translateY(0); }
+    }
+    .btn-secondary, .btn.o_form_button_cancel {
+        border-radius: 8px;
+        transition: transform .15s ease;
+        &:hover { transform: translateY(-1px); }
+    }
+
+    // Alerts
+    .alert {
+        border-radius: 10px;
+        border: 0;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,.05);
+        animation: mcpPop .4s ease backwards;
+    }
+    .alert-info    { background: rgba(30, 95, 168, .08);  color: var(--mcp-primary-dark); }
+    .alert-warning { background: rgba(245, 171, 53, .12); color: #8a5b00; }
+    .alert-light   { background: var(--mcp-bg); }
+
+    // Scope selection colouring via badge-like look
+    .o_field_selection { font-weight: 600; }
+
+    // many2many tags
+    .o_field_many2many_tags .o_tag {
+        border-radius: 20px;
+        background: rgba(109, 94, 252, .12);
+        color: var(--mcp-accent-2);
+        font-weight: 600;
+    }
+
+    // Autocomplete dropdowns must render as a solid, elevated layer so they
+    // never blend into the chatter or neighbouring widgets below.
+    .o-autocomplete--dropdown-menu {
+        z-index: 1060;
+        background-color: #fff;
+        border: 1px solid var(--mcp-border);
+        border-radius: 8px;
+        box-shadow: 0 10px 26px rgba(18, 58, 107, .18);
+    }
+
+    // ---- Field block + label (wizard rows) ------------------------------
+    .o_mcp_field { margin-bottom: 1.1rem; }
+    .o_mcp_label {
+        font-weight: 700;
+        font-size: 12.5px;
+        color: var(--mcp-primary-dark);
+        margin-bottom: 6px;
+        letter-spacing: .2px;
+    }
+
+    // ---- Custom copy widget (mcp_copy) ----------------------------------
+    // Code content is always LTR so URLs / tokens / JSON read naturally even
+    // inside a right-to-left (Arabic) interface.
+    .o_mcp_copy {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        gap: 10px;
+        width: 100%;
+        // The container follows the UI language; only the value elements below
+        // are pinned to LTR because they hold technical data (tokens/URLs/JSON).
+
+        .o_mcp_copy_btn {
+            flex: 0 0 auto;
+            align-self: flex-start;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 0;
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-weight: 600;
+            font-size: 12px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--mcp-primary), var(--mcp-primary-dark));
+            box-shadow: 0 3px 10px rgba(30, 95, 168, .28);
+            cursor: pointer;
+            white-space: nowrap;
+            transition: filter .15s ease, transform .15s ease;
+            &:hover { filter: brightness(1.08); transform: translateY(-1px); }
+            &:active { transform: translateY(0); }
+        }
+
+        .o_mcp_inline {
+            flex: 1 1 auto;
+            min-width: 0;
+            direction: ltr /*rtl:ignore*/;
+            text-align: left /*rtl:ignore*/;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            background: var(--mcp-bg);
+            border: 1px solid var(--mcp-border);
+            border-radius: 8px;
+            padding: 9px 14px;
+            // Wrap the full value so long URLs / tokens are shown in full,
+            // instead of hiding most of it behind a horizontal scrollbar.
+            white-space: normal;
+            word-break: break-all;
+        }
+
+        .o_mcp_pre {
+            flex: 1 1 auto;
+            min-width: 0;
+            margin: 0;
+            direction: ltr /*rtl:ignore*/;
+            text-align: left /*rtl:ignore*/;
+            background: var(--mcp-deep);
+            color: #e6f0ff;
+            border: 0;
+            border-radius: 10px;
+            padding: 16px 18px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 12.5px;
+            line-height: 1.6;
+            // Wrap long lines (preserving JSON indentation) so nothing is hidden.
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
+        }
+
+        // The multi-line config: button floats over the top-right corner
+        &.o_mcp_copy--block {
+            display: block;
+            .o_mcp_copy_btn {
+                position: absolute;
+                top: 12px;
+                inset-inline-end: 14px;
+                z-index: 2;
+            }
+        }
+    }
+}
+
+// =====================================================================
+//  WIZARD  (token reveal)
+// =====================================================================
+.o_mcp_wizard {
+    .modal-content, .o_form_view { border-radius: var(--mcp-radius); }
+
+    // The secret token stands out: dark chip with mint text
+    [name="raw_token"] .o_mcp_copy .o_mcp_inline {
+        background: var(--mcp-deep);
+        color: #7CF6D6;
+        border-color: transparent;
+        font-weight: 700;
+        letter-spacing: .4px;
+        padding: 9px 14px;
+    }
+
+    // Numbered connection steps — follows the UI language direction. Positioning
+    // uses logical properties so numbers sit on the reading-start side in both.
+    .o_mcp_steps {
+        list-style: none;
+        counter-reset: mcpstep;
+        margin: 0;
+        padding: 0;
+
+        li {
+            counter-increment: mcpstep;
+            position: relative;
+            padding: 8px 0;
+            padding-inline-start: 42px;
+            line-height: 1.5;
+            border-bottom: 1px solid var(--mcp-border);
+            animation: mcpFadeUp .4s ease backwards;
+
+            &:last-child { border-bottom: 0; }
+
+            &::before {
+                content: counter(mcpstep);
+                position: absolute;
+                inset-inline-start: 0;
+                top: 6px;
+                width: 26px;
+                height: 26px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                color: #fff;
+                font-size: 13px;
+                font-weight: 700;
+                background: linear-gradient(135deg, var(--mcp-primary), var(--mcp-accent-2));
+                box-shadow: 0 3px 8px rgba(30, 95, 168, .3);
+            }
+        }
+        @for $i from 1 through 6 {
+            li:nth-child(#{$i}) { animation-delay: #{$i * 0.06}s; }
+        }
+    }
+}
+
+// Widen the MCP reveal dialog so full-width code fields are comfortable to read
+.modal-dialog:has(.o_mcp_wizard) { max-width: 880px; }
+
+// =====================================================================
+//  LIST  (tokens / logs / tools)
+// =====================================================================
+.o_mcp_list {
+    thead th {
+        background: var(--mcp-bg);
+        color: var(--mcp-primary-dark) !important;
+        font-weight: 700;
+        border-bottom: 2px solid var(--mcp-border) !important;
+    }
+    tbody tr {
+        transition: background .15s ease, box-shadow .15s ease;
+        &:hover td {
+            background: rgba(30, 95, 168, .05) !important;
+        }
+    }
+    // status booleans
+    .o_field_boolean .form-check-input:checked {
+        background-color: var(--mcp-ok);
+        border-color: var(--mcp-ok);
+    }
+}
+
+// =====================================================================
+//  STATUS PILL widget (JS/OWL)
+// =====================================================================
+.o_mcp_pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    // Neutral defaults; each state below repaints these three vars.
+    --pill: #6b7a90;
+    color: var(--pill);
+    background: rgba(107, 122, 144, .10);
+    border: 1px solid rgba(107, 122, 144, .3);
+
+    .o_mcp_dot {
+        width: 9px; height: 9px;
+        border-radius: 50%;
+        background: var(--pill);
+        // Only a genuinely live connection pulses.
+        &.o_mcp_dot--live { animation: mcpPulse 1.8s ease-out infinite; }
+    }
+
+    // ---- Per-state colours -----------------------------------------------
+    // Connected → green (live), Awaiting → blue, Idle → amber,
+    // Draft → slate, Expired/Revoked/Disabled → red/grey.
+    &.o_mcp_pill--active   { --pill: #17a673; background: rgba(23, 166, 115, .10); border-color: rgba(23, 166, 115, .3); }
+    &.o_mcp_pill--never    { --pill: #1e5fa8; background: rgba(30, 95, 168, .10);  border-color: rgba(30, 95, 168, .3); }
+    &.o_mcp_pill--idle     { --pill: #b8860b; background: rgba(245, 171, 53, .12); border-color: rgba(245, 171, 53, .35); }
+    &.o_mcp_pill--draft    { --pill: #64748b; background: rgba(100, 116, 139, .10); border-color: rgba(100, 116, 139, .3); }
+    &.o_mcp_pill--expired  { --pill: #e5484d; background: rgba(229, 72, 77, .10);  border-color: rgba(229, 72, 77, .3); }
+    &.o_mcp_pill--revoked  { --pill: #e5484d; background: rgba(229, 72, 77, .10);  border-color: rgba(229, 72, 77, .3); }
+    &.o_mcp_pill--disabled { --pill: #475569; background: rgba(71, 85, 105, .12);  border-color: rgba(71, 85, 105, .35); }
+}

@@ -1,0 +1,1269 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* ai_mcp_server
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e-20260430\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-19 14:07+0000\n"
+"PO-Revision-Date: 2026-07-14 15:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: Arabic\n"
+"Language: ar_001\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "<b>Name:</b> any label (e.g. Odoo MCP)."
+msgstr "<b>الاسم:</b> أي تسمية (مثل Odoo MCP)."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "<b>Remote MCP server URL:</b> paste the Connector URL above."
+msgstr "<b>عنوان خادم MCP البعيد:</b> الصق عنوان الموصّل (URL) الموضّح أعلاه."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "<i class=\"fa fa-exclamation-triangle fa-lg me-2\" title=\"Warning\"/>"
+msgstr ""
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\" title=\"Info\"/>\n"
+"                                Leave both lists <b>empty</b> for full access to everything the acting user\n"
+"                                can already reach. Add entries only to <b>narrow</b> the token down."
+msgstr ""
+"<i class=\"fa fa-info-circle me-1\" title=\"Info\"/>\n"
+"                                اترك القائمتين <b>فارغتين</b> للحصول على وصول كامل إلى كل ما يستطيع المستخدم المنفِّذ\n"
+"                                الوصول إليه بالفعل. أضِف مدخلات فقط لأجل <b>تضييق</b> صلاحيات التوكن."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid ""
+"<strong>Copy your secret now.</strong>\n"
+"                        For security the token is stored only as a hash and\n"
+"                        <b>will never be shown again</b>. If you lose it, click Regenerate."
+msgstr ""
+"<strong>انسخ توكنك السرّي الآن.</strong>\n"
+"                        لأغراض الأمان يُخزَّن التوكن كقيمة تجزئة (hash) فقط،\n"
+"                        و<b>لن يُعرض مرة أخرى أبداً</b>. إذا فقدته، انقر على إعادة التوليد."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__name
+msgid "A human friendly label to identify where this access token is used (e.g. 'Claude Desktop - Ahmed')."
+msgstr "تسمية واضحة للتعرّف على المكان الذي يُستخدم فيه توكن الوصول هذا (مثل 'Claude Desktop - Ahmed')."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "A label to recognise where this token is used."
+msgstr "تسمية للتعرّف على المكان الذي يُستخدم فيه هذا التوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__token_preview
+msgid "A masked preview of the secret token showing only its last characters for identification."
+msgstr "معاينة مُقنّعة للتوكن السرّي تُظهر أحرفه الأخيرة فقط لأغراض التعرّف."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "A new secret token was generated. The previous token is now invalid."
+msgstr "تم توليد توكن سرّي جديد. أصبح التوكن السابق غير صالح الآن."
+
+#. module: ai_mcp_server
+#: model_terms:ir.actions.act_window,help:ai_mcp_server.action_mcp_token
+msgid ""
+"A token lets an AI client such as Claude connect to this database securely.\n"
+"               After creating one, click <b>Show Token</b> to copy the secret."
+msgstr ""
+"يتيح التوكن لعميل ذكاء اصطناعي مثل Claude الاتصال بقاعدة البيانات هذه بأمان.\n"
+"               بعد إنشاء توكن، انقر على <b>إظهار التوكن</b> لنسخ القيمة السرّية."
+
+#. module: ai_mcp_server
+#: model:ir.actions.act_window,name:ai_mcp_server.action_mcp_token
+#: model:ir.ui.menu,name:ai_mcp_server.menu_mcp_tokens
+msgid "AI Access Keys"
+msgstr "مفاتيح وصول الذكاء الاصطناعي"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__client_config
+msgid "AI Client Config"
+msgstr "إعدادات عميل الذكاء الاصطناعي"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "AI Client Config — ready to paste"
+msgstr "إعدادات عميل الذكاء الاصطناعي — جاهزة للّصق"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/protocol.py:0
+#, python-format
+msgid "Access denied: %s"
+msgstr "تم رفض الوصول: %s"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__user_id
+msgid "Acted As"
+msgstr "نُفِّذ باسم"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_needaction
+msgid "Action Needed"
+msgstr "إجراء مطلوب"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__active
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_search
+msgid "Active"
+msgstr "نشط"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__user_id
+msgid "Acts As User"
+msgstr "يعمل باسم المستخدم"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_tool__required_scope__admin
+msgid "Admin"
+msgstr "مدير"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__scope__admin
+msgid "Administrator"
+msgstr "مدير النظام"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__model_ids
+msgid "Allowed Models"
+msgstr "النماذج المسموح بها"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__tool_ids
+msgid "Allowed Tools"
+msgstr "الأدوات المسموح بها"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Applied to newly created tokens (calls/min)."
+msgstr "يُطبَّق على التوكنات المُنشأة حديثاً (عدد الطلبات/دقيقة)."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__arguments
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_form
+msgid "Arguments"
+msgstr "الوسائط"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_attachment_count
+msgid "Attachment Count"
+msgstr "عدد المرفقات"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#: model:ir.actions.act_window,name:ai_mcp_server.action_mcp_log
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__log_ids
+#: model:ir.ui.menu,name:ai_mcp_server.menu_mcp_logs
+#, python-format
+msgid "Audit Logs"
+msgstr "سجلّ التدقيق"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__header_value
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Authorization Header"
+msgstr "ترويسة Authorization"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Auto-disables the token after this date. Empty = never expires."
+msgstr ""
+"يُعطّل التوكن تلقائياً بعد هذا التاريخ. فارغ = لا تنتهي صلاحيته أبداً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__never
+msgid "Awaiting First Connection"
+msgstr "بانتظار أول اتصال"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token_reveal__endpoint_url
+msgid "Base MCP endpoint for clients that send an Authorization header (e.g. Claude Desktop, Cursor)."
+msgstr "نقطة نهاية MCP الأساسية للعملاء الذين يرسلون ترويسة Authorization (مثل Claude Desktop، Cursor)."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Calls Logged"
+msgstr "الطلبات المُسجّلة"
+
+#. module: ai_mcp_server
+#: model:res.groups,comment:ai_mcp_server.group_mcp_user
+msgid "Can create and manage their own MCP access tokens."
+msgstr "يمكنه إنشاء وإدارة توكنات وصول MCP الخاصة به."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Click <b>Add</b> — the status turns to <b>Connected ✓</b>."
+msgstr "انقر على <b>إضافة</b> — تتحوّل الحالة إلى <b>متصل ✓</b>."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Click <b>Add</b> → <b>Add custom connector</b>."
+msgstr "انقر على <b>إضافة</b> ← <b>إضافة موصّل مخصّص</b>."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid ""
+"Click <b>Generate Token</b> (top-left) to reveal the secret and get the\n"
+"                                ready-to-paste connection URLs and step-by-step instructions."
+msgstr ""
+"انقر على <b>توليد التوكن</b> (أعلى اليسار) لإظهار القيمة السرّية والحصول على\n"
+"                                عناوين الاتصال الجاهزة للّصق والتعليمات خطوة بخطوة."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__client_ip
+msgid "Client IP"
+msgstr "عنوان IP للعميل"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Client IP %s is not allowed for this token."
+msgstr "عنوان IP للعميل %s غير مسموح به لهذا التوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__last_ip
+msgid "Client IP address recorded on the most recent use of this token."
+msgstr "عنوان IP للعميل المُسجَّل عند آخر استخدام لهذا التوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التهيئة"
+
+#. module: ai_mcp_server
+#: model:ir.ui.menu,name:ai_mcp_server.menu_mcp_config
+msgid "Configuration"
+msgstr "التهيئة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__active
+msgid "Connected"
+msgstr "متصل"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__connection_state
+msgid "Connection Status"
+msgstr "حالة الاتصال"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__connector_url
+msgid "Connector URL"
+msgstr "عنوان الموصّل (URL)"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Connector URL — paste this into claude.ai"
+msgstr "عنوان الموصّل (URL) — الصق هذا في claude.ai"
+
+#. module: ai_mcp_server
+#: model_terms:ir.actions.act_window,help:ai_mcp_server.action_mcp_token
+msgid "Create your first MCP access token"
+msgstr "أنشئ أول توكن وصول MCP خاص بك"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__create_uid
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__create_uid
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__create_uid
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__create_date
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__create_date
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__create_date
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+msgid "Date"
+msgstr "التاريخ"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Default Rate Limit"
+msgstr "حدّ المعدّل الافتراضي"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_res_config_settings__mcp_default_rate_limit
+msgid "Default Rate Limit (calls/min)"
+msgstr "حدّ المعدّل الافتراضي (عدد الطلبات/دقيقة)"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_res_config_settings__mcp_default_rate_limit
+msgid "Default per-minute call limit applied to newly created tokens."
+msgstr "حدّ الطلبات الافتراضي في الدقيقة المُطبَّق على التوكنات المُنشأة حديثاً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__description
+msgid "Description"
+msgstr "الوصف"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_tool_form
+msgid "Description (sent to the AI client)"
+msgstr "الوصف (يُرسَل إلى عميل الذكاء الاصطناعي)"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__display_name
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__display_name
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__display_name
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__display_name
+msgid "Display Name"
+msgstr "الاسم المعروض"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_tool__sequence
+msgid "Display order of the tool in the registry list."
+msgstr "ترتيب عرض الأداة في قائمة السجلّ."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Done"
+msgstr "تم"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__duration_ms
+msgid "Duration (ms)"
+msgstr "المدة (ملّي ثانية)"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_res_config_settings__mcp_server_enabled
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Enable MCP Server"
+msgstr "تفعيل خادم MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__active
+msgid "Enabled"
+msgstr "مُفعّل"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__endpoint_url
+#: model:ir.model.fields,field_description:ai_mcp_server.field_res_config_settings__mcp_endpoint_url
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Endpoint URL"
+msgstr "عنوان نقطة النهاية (Endpoint URL)"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__error_message
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_form
+msgid "Error"
+msgstr "خطأ"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/protocol.py:0
+#, python-format
+msgid "Error: %s"
+msgstr "خطأ: %s"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+msgid "Errors"
+msgstr "الأخطاء"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid ""
+"Every AI action runs with THIS user's permissions only. Use a limited user "
+"for safety."
+msgstr ""
+"يُنفَّذ كل إجراء للذكاء الاصطناعي بصلاحيات هذا المستخدم فقط. استخدم مستخدماً"
+" محدود الصلاحيات لأغراض الأمان."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__user_id
+msgid "Every MCP call made with this token executes strictly as this Odoo user, honouring all of that user's access rights and record rules."
+msgstr "يُنفَّذ كل طلب MCP يتم بهذا التوكن حصرياً باسم مستخدم Odoo هذا، مع احترام كامل صلاحيات وصوله وقواعد سجلّاته."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__expiration_date
+msgid "Expiration Date"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__is_expired
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__expired
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_search
+msgid "Expired"
+msgstr "منتهي الصلاحية"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_follower_ids
+msgid "Followers"
+msgstr "المتابعون"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "المتابعون (الشركاء)"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid ""
+"For AI tools that support custom headers (Claude Desktop, Cursor and\n"
+"                            other MCP clients), use the base endpoint plus an Authorization header."
+msgstr ""
+"لأدوات الذكاء الاصطناعي التي تدعم الترويسات المخصّصة (Claude Desktop، Cursor\n"
+"                            وعملاء MCP الآخرين)، استخدم نقطة النهاية الأساسية مع ترويسة Authorization."
+
+#. module: ai_mcp_server
+#: model:res.groups,comment:ai_mcp_server.group_mcp_admin
+msgid ""
+"Full control over MCP tokens, tools, settings and audit logs across all "
+"users."
+msgstr ""
+"تحكّم كامل في توكنات MCP والأدوات والإعدادات وسجلّات التدقيق لجميع "
+"المستخدمين."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__log_ids
+msgid "Full history of MCP calls performed with this token."
+msgstr "السجلّ الكامل لطلبات MCP المُنفَّذة بهذا التوكن."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Generate Token"
+msgstr "توليد التوكن"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_tool__active
+msgid "Globally enable or disable this tool for every token. Disabled tools are hidden from the AI client's tool list."
+msgstr "تفعيل أو تعطيل هذه الأداة عالمياً لكل توكن. تُخفى الأدوات المُعطّلة من قائمة أدوات عميل الذكاء الاصطناعي."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_search
+msgid "Group By"
+msgstr "تجميع حسب"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Hard cap on records returned by any read tool."
+msgstr "حدّ أقصى صارم لعدد السجلّات التي تُرجعها أي أداة قراءة."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_res_config_settings__mcp_max_records
+msgid "Hard cap on the number of records any single read tool may return, protecting the server from oversized responses."
+msgstr "حدّ أقصى صارم لعدد السجلّات التي قد تُرجعها أي أداة قراءة واحدة، لحماية الخادم من الاستجابات مفرطة الحجم."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__has_message
+msgid "Has Message"
+msgstr "يحتوي على رسالة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_tool__name
+msgid "Human friendly name of the MCP tool shown to administrators."
+msgstr "اسم واضح لأداة MCP يُعرض للمديرين."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__id
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__id
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__id
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__id
+msgid "ID"
+msgstr "المعرّف"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__ip_allowlist
+msgid "IP Allow-List"
+msgstr "قائمة عناوين IP المسموح بها"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__client_ip
+msgid "IP address of the AI client that issued the call."
+msgstr "عنوان IP لعميل الذكاء الاصطناعي الذي أصدر الطلب."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__idle
+msgid "Idle / Disconnected"
+msgstr "خامل / غير متصل"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "إذا حُدِّد، فإن الرسائل الجديدة تتطلّب انتباهك."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr "إذا حُدِّد، فإن بعض الرسائل بها خطأ في التسليم."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__is_expired
+msgid "Indicates whether this token has passed its expiration date."
+msgstr "يشير إلى ما إذا كان هذا التوكن قد تجاوز تاريخ انتهاء صلاحيته."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Invalid access token."
+msgstr "توكن وصول غير صالح."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__token_hash
+msgid "Irreversible SHA-256 hash of the secret token used to authenticate incoming requests; the raw token is never stored."
+msgstr "قيمة تجزئة SHA-256 غير قابلة للعكس للتوكن السرّي تُستخدم للمصادقة على الطلبات الواردة؛ لا يُخزَّن التوكن الخام أبداً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_is_follower
+msgid "Is Follower"
+msgstr "متابِع"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__arguments
+msgid "JSON snapshot of the arguments received for this call."
+msgstr "لقطة JSON للوسائط المُستلَمة لهذا الطلب."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__method
+msgid "JSON-RPC Method"
+msgstr "أسلوب JSON-RPC"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__last_ip
+msgid "Last IP"
+msgstr "آخر عنوان IP"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__write_uid
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__write_uid
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__write_uid
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__write_date
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__write_date
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__write_date
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__last_used
+msgid "Last Used"
+msgstr "آخر استخدام"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__call_count
+msgid "Lifetime number of MCP calls served with this token."
+msgstr "إجمالي عدد طلبات MCP التي خُدِّمت بهذا التوكن طوال عمره."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__connection_state
+msgid "Live status of this token derived from real evidence — whether the MCP server is on, the token is generated/valid, and how recently it was actually used:\n• Server Disabled — the whole MCP server is switched off.\n• Revoked — this token was manually revoked.\n• Not Generated — no secret has been generated yet, so it cannot authenticate.\n• Expired — the token passed its expiration date.\n• Awaiting First Connection — ready, but never used yet.\n• Connected — used successfully within the active window.\n• Idle / Disconnected — used before, but not recently."
+msgstr "الحالة الحيّة لهذا التوكن مُستمدّة من أدلة فعلية — هل خادم MCP يعمل، وهل التوكن مُولَّد/صالح، ومدى حداثة آخر استخدام فعلي له:\n• الخادم معطّل — خادم MCP مطفأ بالكامل.\n• ملغى — تم إلغاء هذا التوكن يدويًا.\n• لم يُولَّد بعد — لم يُنشأ سرّ بعد، لذا لا يمكنه المصادقة.\n• منتهي الصلاحية — تجاوز التوكن تاريخ انتهائه.\n• بانتظار أول اتصال — جاهز، لكن لم يُستخدم بعد.\n• متصل — استُخدم بنجاح خلال نافذة النشاط.\n• خامل / غير متصل — استُخدم من قبل، لكن ليس مؤخرًا."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__log_count
+msgid "Log Count"
+msgstr "عدد السجلّات"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_res_config_settings__mcp_log_retention_days
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Log Retention (days)"
+msgstr "مدة الاحتفاظ بالسجلّات (بالأيام)"
+
+#. module: ai_mcp_server
+#: model:res.groups,name:ai_mcp_server.group_mcp_admin
+msgid "MCP Administrator"
+msgstr "مدير MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_mcp_log
+msgid "MCP Audit Log"
+msgstr "سجلّ تدقيق MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__endpoint_url
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "MCP Endpoint"
+msgstr "نقطة نهاية MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_mcp_token
+msgid "MCP Personal Access Token"
+msgstr "توكن وصول MCP الشخصي"
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_mcp_protocol
+msgid "MCP Protocol Handler"
+msgstr "معالِج بروتوكول MCP"
+
+#. module: ai_mcp_server
+#: model:ir.module.category,name:ai_mcp_server.module_category_mcp
+#: model:ir.ui.menu,name:ai_mcp_server.menu_mcp_root
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "MCP Server"
+msgstr "خادم MCP"
+
+#. module: ai_mcp_server
+#: model:ir.actions.act_window,name:ai_mcp_server.action_mcp_config_settings
+msgid "MCP Settings"
+msgstr "إعدادات MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_mcp_token_reveal
+msgid "MCP Token Reveal Wizard"
+msgstr "معالج إظهار توكن MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_mcp_tool_executor
+msgid "MCP Tool Executor"
+msgstr "منفِّذ أدوات MCP"
+
+#. module: ai_mcp_server
+#: model:ir.model,name:ai_mcp_server.model_mcp_tool
+msgid "MCP Tool Registry"
+msgstr "سجلّ أدوات MCP"
+
+#. module: ai_mcp_server
+#: model:res.groups,name:ai_mcp_server.group_mcp_user
+msgid "MCP User"
+msgstr "مستخدم MCP"
+
+#. module: ai_mcp_server
+#: model:ir.actions.server,name:ai_mcp_server.cron_mcp_purge_logs_ir_actions_server
+msgid "MCP: Purge Old Audit Logs"
+msgstr "MCP: تنظيف سجلّات التدقيق القديمة"
+
+#. module: ai_mcp_server
+#: model:ir.module.category,description:ai_mcp_server.module_category_mcp
+msgid "Manage AI (Model Context Protocol) access to Odoo."
+msgstr "إدارة وصول الذكاء الاصطناعي (بروتوكول سياق النموذج - MCP) إلى Odoo."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_res_config_settings__mcp_server_enabled
+msgid "Master switch that turns the MCP endpoint on or off for the whole database."
+msgstr "مفتاح رئيسي يُشغّل أو يُوقف نقطة نهاية MCP لقاعدة البيانات بأكملها."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_res_config_settings__mcp_max_records
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Max Records Per Call"
+msgstr "الحد الأقصى للسجلّات لكل طلب"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid ""
+"Max calls per minute — protects the server from overload. 0 = unlimited."
+msgstr ""
+"الحد الأقصى للطلبات في الدقيقة — يحمي الخادم من الحِمل الزائد. 0 = غير "
+"محدود."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__rate_limit
+msgid "Maximum number of MCP calls allowed with this token per rolling minute. Set to 0 to disable rate limiting."
+msgstr "الحد الأقصى لعدد طلبات MCP المسموح بها بهذا التوكن لكل دقيقة متجدّدة. اضبطه على 0 لتعطيل حدّ المعدّل."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_has_error
+msgid "Message Delivery error"
+msgstr "خطأ في تسليم الرسالة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_ids
+msgid "Messages"
+msgstr "الرسائل"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/tools.py:0
+#, python-format
+msgid "Method '%s' is not allowed."
+msgstr "الأسلوب '%s' غير مسموح به."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_tool__required_scope
+msgid "Minimum token scope needed to invoke this tool."
+msgstr "الحد الأدنى لنطاق التوكن المطلوب لاستدعاء هذه الأداة."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Missing Bearer token."
+msgstr "توكن Bearer مفقود."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/protocol.py:0
+#, python-format
+msgid "Missing tool name."
+msgstr "اسم الأداة مفقود."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__model_name
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+msgid "Model"
+msgstr "النموذج"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/tools.py:0
+#, python-format
+msgid "Model '%s' does not exist."
+msgstr "النموذج '%s' غير موجود."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/tools.py:0
+#, python-format
+msgid "Model '%s' has no method '%s'."
+msgstr "النموذج '%s' لا يحتوي على الأسلوب '%s'."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Model '%s' is not permitted for this token."
+msgstr "النموذج '%s' غير مسموح به لهذا التوكن."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Model Context Protocol Server"
+msgstr "خادم بروتوكول سياق النموذج (Model Context Protocol)"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_tool__description
+msgid "Natural language description sent to the AI client so it knows when and how to use this tool."
+msgstr "وصف بلغة طبيعية يُرسَل إلى عميل الذكاء الاصطناعي ليعرف متى وكيف يستخدم هذه الأداة."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__draft
+msgid "Not Generated"
+msgstr "لم يُولَّد بعد"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_needaction_counter
+msgid "Number of Actions"
+msgstr "عدد الإجراءات"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__log_count
+msgid "Number of audit log entries recorded for this token."
+msgstr "عدد مدخلات سجلّ التدقيق المُسجّلة لهذا التوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_res_config_settings__mcp_log_retention_days
+msgid "Number of days audit logs are kept before automatic cleanup. Set to 0 to keep logs forever."
+msgstr "عدد الأيام التي تُحفظ فيها سجلّات التدقيق قبل التنظيف التلقائي. اضبطه على 0 للاحتفاظ بالسجلّات إلى الأبد."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__message_has_error_counter
+msgid "Number of errors"
+msgstr "عدد الأخطاء"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "عدد الرسائل التي تتطلّب إجراءً"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "عدد الرسائل التي بها خطأ في التسليم"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Older audit logs can be purged. 0 = keep forever."
+msgstr "يمكن تنظيف سجلّات التدقيق القديمة. 0 = الاحتفاظ بها إلى الأبد."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Only these IPs may use the token. Empty = any origin."
+msgstr "يُسمح لهذه العناوين IP فقط باستخدام التوكن. فارغ = أي مصدر."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Open <b>claude.ai</b> → <b>Settings</b> → <b>Connectors</b>."
+msgstr "افتح <b>claude.ai</b> ← <b>Settings</b> ← <b>Connectors</b>."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__ip_allowlist
+msgid "Optional comma separated list of client IP addresses permitted to use this token. Leave empty to allow any origin."
+msgstr "قائمة اختيارية مفصولة بفواصل بعناوين IP للعملاء المسموح لهم باستخدام هذا التوكن. اتركها فارغة للسماح بأي مصدر."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__expiration_date
+msgid "Optional date and time after which this token stops working. Leave empty for a token that never expires."
+msgstr "تاريخ ووقت اختياري يتوقّف بعده هذا التوكن عن العمل. اتركه فارغاً للحصول على توكن لا تنتهي صلاحيته أبداً."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Paste this into your AI client connector configuration."
+msgstr "الصق هذا في إعدادات موصّل عميل الذكاء الاصطناعي لديك."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid ""
+"Paste this into your AI tool's MCP configuration file, then fully\n"
+"                                restart the tool. All values are already filled in."
+msgstr ""
+"الصق هذا في ملف إعدادات MCP الخاص بأداة الذكاء الاصطناعي لديك، ثم أعِد\n"
+"                                تشغيل الأداة بالكامل. جميع القيم مُعبّأة مسبقاً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__scope
+msgid "Permission level granted to this token: Read Only allows queries only; Read & Write allows create/update/delete; Administrator also allows executing model methods."
+msgstr "مستوى الصلاحية الممنوح لهذا التوكن: القراءة فقط تسمح بالاستعلامات فقط؛ القراءة والكتابة تسمح بالإنشاء/التحديث/الحذف؛ ومدير النظام يسمح أيضاً بتنفيذ أساليب النماذج."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__rate_limit
+msgid "Rate Limit (calls/min)"
+msgstr "حدّ المعدّل (عدد الطلبات/دقيقة)"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Rate limit exceeded (%s calls/min). Please slow down."
+msgstr "تم تجاوز حدّ المعدّل (%s طلب/دقيقة). يرجى التمهّل."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_tool__required_scope__read
+msgid "Read"
+msgstr "قراءة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__scope__write
+msgid "Read & Write"
+msgstr "قراءة وكتابة"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid ""
+"Read = query only · Read &amp; Write = create/update/delete · Admin = also "
+"run methods."
+msgstr ""
+"القراءة = استعلام فقط · القراءة &amp; الكتابة = إنشاء/تحديث/حذف · المدير = "
+"تشغيل الأساليب أيضاً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__scope__read
+msgid "Read Only"
+msgstr "قراءة فقط"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token_reveal__client_config
+msgid "Ready-to-paste MCP client configuration (via the mcp-remote bridge) with your endpoint and token already filled in — works with Claude Desktop, Cursor and any other MCP-compatible AI tool."
+msgstr "إعدادات عميل MCP جاهزة للّصق (عبر جسر mcp-remote) مع نقطة النهاية والتوكن الخاصين بك مُعبّأين مسبقاً — تعمل مع Claude Desktop، Cursor وأي أداة ذكاء اصطناعي أخرى متوافقة مع MCP."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token_reveal__connector_url
+msgid "Ready-to-paste URL with the token embedded, for clients that cannot send custom headers (e.g. the claude.ai web connector)."
+msgstr "عنوان URL جاهز للّصق مع تضمين التوكن، للعملاء الذين لا يمكنهم إرسال ترويسات مخصّصة (مثل موصّل claude.ai على الويب)."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Regenerate"
+msgstr "إعادة التوليد"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__required_scope
+msgid "Required Scope"
+msgstr "النطاق المطلوب"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__tool_ids
+msgid "Restrict this token to these MCP tools only. Leave empty to expose every globally enabled tool."
+msgstr "قصر هذا التوكن على أدوات MCP هذه فقط. اتركه فارغاً لإتاحة كل أداة مُفعّلة عالمياً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__model_ids
+msgid "Restrict this token to these models only. Leave empty to allow every model the acting user can already access."
+msgstr "قصر هذا التوكن على هذه النماذج فقط. اتركه فارغاً للسماح بكل نموذج يستطيع المستخدم المنفِّذ الوصول إليه بالفعل."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Restricts the token to ONLY these MCP tools."
+msgstr "يقصر التوكن على أدوات MCP هذه فقط لا غير."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Restricts the token to ONLY these models. e.g. only sale.order."
+msgstr "يقصر التوكن على هذه النماذج فقط لا غير. مثل sale.order فقط."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__result_summary
+msgid "Result Summary"
+msgstr "ملخّص النتيجة"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Revoke"
+msgstr "إلغاء"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Revoke this token? It will stop working immediately."
+msgstr "إلغاء هذا التوكن؟ سيتوقّف عن العمل فوراً."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__revoked
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_search
+msgid "Revoked"
+msgstr "مُلغى"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Safety & Limits"
+msgstr "الأمان والحدود"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__scope
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_search
+msgid "Scope"
+msgstr "النطاق"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__raw_token
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Secret Token"
+msgstr "التوكن السرّي"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__sequence
+msgid "Sequence"
+msgstr "التسلسل"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_token__connection_state__disabled
+msgid "Server Disabled"
+msgstr "الخادم معطّل"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__duration_ms
+msgid "Server side execution time of the call in milliseconds."
+msgstr "زمن تنفيذ الطلب على جانب الخادم بالملّي ثانية."
+
+#. module: ai_mcp_server
+#: model:ir.ui.menu,name:ai_mcp_server.menu_mcp_settings
+msgid "Settings"
+msgstr "الإعدادات"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__result_summary
+msgid "Short summary of the outcome, such as the number of records returned or affected."
+msgstr "ملخّص موجز للنتيجة، مثل عدد السجلّات المُرجعة أو المتأثّرة."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "Steps"
+msgstr "الخطوات"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__success
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+msgid "Success"
+msgstr "نجاح"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__method
+msgid "The MCP JSON-RPC method invoked (e.g. tools/call, initialize)."
+msgstr "أسلوب MCP JSON-RPC الذي تم استدعاؤه (مثل tools/call، initialize)."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_res_config_settings__mcp_endpoint_url
+msgid "The MCP endpoint URL to configure inside your AI client."
+msgstr "عنوان نقطة نهاية MCP الذي يُهيّأ داخل عميل الذكاء الاصطناعي لديك."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__tool_name
+msgid "The MCP tool that was executed for this call."
+msgstr "أداة MCP التي تم تنفيذها لهذا الطلب."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__model_name
+msgid "The Odoo model targeted by this call, when applicable."
+msgstr "نموذج Odoo المستهدَف بهذا الطلب، عند الاقتضاء."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__user_id
+msgid "The Odoo user the call was executed as."
+msgstr "مستخدم Odoo الذي نُفِّذ الطلب باسمه."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__token_id
+msgid "The access token used for this MCP call."
+msgstr "توكن الوصول المُستخدم لطلب MCP هذا."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__endpoint_url
+msgid "The base MCP endpoint URL of this server; the full secret is only shown once when you generate the token."
+msgstr "عنوان نقطة نهاية MCP الأساسية لهذا الخادم؛ تُعرض القيمة السرّية الكاملة مرة واحدة فقط عند توليدك للتوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__error_message
+msgid "The error message captured when the call failed."
+msgstr "رسالة الخطأ التي التُقطت عند فشل الطلب."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token_reveal__header_value
+msgid "The exact Authorization header value for header-based clients."
+msgstr "قيمة ترويسة Authorization الدقيقة للعملاء المعتمدين على الترويسات."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_tool__technical_name
+msgid "The exact tool identifier exposed to the AI client over MCP (e.g. 'odoo_search_read'). Must be unique."
+msgstr "مُعرّف الأداة الدقيق المُتاح لعميل الذكاء الاصطناعي عبر MCP (مثل 'odoo_search_read'). يجب أن يكون فريداً."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "The secret token was regenerated. The previous token is now invalid."
+msgstr "تمت إعادة توليد التوكن السرّي. أصبح التوكن السابق غير صالح الآن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token_reveal__token_id
+msgid "The token whose freshly generated secret is being displayed."
+msgstr "التوكن الذي تُعرض قيمته السرّية المُولّدة حديثاً."
+
+#. module: ai_mcp_server
+#: model:ir.model.constraint,message:ai_mcp_server.constraint_mcp_tool_technical_name_uniq
+msgid "The tool technical name must be unique."
+msgstr "يجب أن يكون الاسم التقني للأداة فريداً."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid ""
+"The web connector cannot send headers, so the token is embedded\n"
+"                            directly in this URL. Paste it as-is — no API key needed."
+msgstr ""
+"لا يستطيع موصّل الويب إرسال الترويسات، لذلك يُضمَّن التوكن\n"
+"                            مباشرة في عنوان URL هذا. الصقه كما هو — لا حاجة إلى مفتاح API."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "This access token has been revoked."
+msgstr "تم إلغاء توكن الوصول هذا."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "This access token has expired."
+msgstr "انتهت صلاحية توكن الوصول هذا."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "This invalidates the current token immediately. Continue?"
+msgstr "هذا يُبطل التوكن الحالي فوراً. هل تريد المتابعة؟"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "This token's scope '%s' is insufficient; '%s' is required."
+msgstr "نطاق هذا التوكن '%s' غير كافٍ؛ المطلوب هو '%s'."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__last_used
+msgid "Timestamp of the most recent successful use of this token."
+msgstr "طابع زمني لآخر استخدام ناجح لهذا التوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__token_id
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token_reveal__token_id
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+msgid "Token"
+msgstr "توكن"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__token_hash
+msgid "Token Hash"
+msgstr "تجزئة التوكن"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__name
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "Token Name"
+msgstr "اسم التوكن"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__token_preview
+msgid "Token Preview"
+msgstr "معاينة التوكن"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_log__tool_name
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_log_search
+msgid "Tool"
+msgstr "أداة"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/tools.py:0
+#, python-format
+msgid "Tool '%s' has no implementation."
+msgstr "الأداة '%s' ليس لها تنفيذ."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/tools.py:0
+#, python-format
+msgid "Tool '%s' is disabled."
+msgstr "الأداة '%s' مُعطّلة."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Tool '%s' is not permitted for this token."
+msgstr "الأداة '%s' غير مسموح بها لهذا التوكن."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__name
+msgid "Tool Label"
+msgstr "تسمية الأداة"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_tool__technical_name
+msgid "Tool Name"
+msgstr "اسم الأداة"
+
+#. module: ai_mcp_server
+#: model:ir.actions.act_window,name:ai_mcp_server.action_mcp_tool
+#: model:ir.ui.menu,name:ai_mcp_server.menu_mcp_tools
+msgid "Tools"
+msgstr "الأدوات"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,field_description:ai_mcp_server.field_mcp_token__call_count
+msgid "Total Calls"
+msgstr "إجمالي الطلبات"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_config_settings
+msgid "Turn the /mcp endpoint on or off for the whole database."
+msgstr "تشغيل أو إيقاف نقطة النهاية /mcp لقاعدة البيانات بأكملها."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token__active
+msgid "Uncheck to instantly revoke this token; revoked tokens are rejected on every request."
+msgstr "ألغِ التحديد لإلغاء هذا التوكن فوراً؛ تُرفض التوكنات المُلغاة في كل طلب."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/protocol.py:0
+#, python-format
+msgid "Unknown method '%s'."
+msgstr "أسلوب غير معروف '%s'."
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/services/tools.py:0
+#, python-format
+msgid "Unknown tool '%s'."
+msgstr "أداة غير معروفة '%s'."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_search
+msgid "User"
+msgstr "المستخدم"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_log__success
+msgid "Whether the call completed successfully."
+msgstr "ما إذا كان الطلب قد اكتمل بنجاح."
+
+#. module: ai_mcp_server
+#: model:ir.model.fields.selection,name:ai_mcp_server.selection__mcp_tool__required_scope__write
+msgid "Write"
+msgstr "كتابة"
+
+#. module: ai_mcp_server
+#. odoo-python
+#: code:addons/ai_mcp_server/models/mcp_token.py:0
+#, python-format
+msgid "Your MCP Access Token"
+msgstr "توكن وصول MCP الخاص بك"
+
+#. module: ai_mcp_server
+#: model:ir.model.fields,help:ai_mcp_server.field_mcp_token_reveal__raw_token
+msgid "Your secret access token. Copy it now — for security it is stored only as a hash and cannot be shown again."
+msgstr "توكن الوصول السرّي الخاص بك. انسخه الآن — لأغراض الأمان يُخزَّن كقيمة تجزئة (hash) فقط ولا يمكن عرضه مرة أخرى."
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "e.g. 1.2.3.4, 5.6.7.8"
+msgstr "مثل 1.2.3.4, 5.6.7.8"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "e.g. Claude Desktop - Ahmed"
+msgstr "مثل Claude Desktop - Ahmed"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "⏱️ Lifetime & Limits"
+msgstr "⏱️ العمر والحدود"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "🌐 Connect claude.ai (Web)"
+msgstr "🌐 الاتصال بـ claude.ai (الويب)"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "📊 Usage"
+msgstr "📊 الاستخدام"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "🔌 How to Connect"
+msgstr "🔌 كيفية الاتصال"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "🔐 Identity & Permissions"
+msgstr "🔐 الهوية والصلاحيات"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_form
+msgid "🔒 Restrictions"
+msgstr "🔒 القيود"
+
+#. module: ai_mcp_server
+#: model_terms:ir.ui.view,arch_db:ai_mcp_server.view_mcp_token_reveal_form
+msgid "🖥️ Connect a Desktop AI Tool"
+msgstr "🖥️ الاتصال بأداة ذكاء اصطناعي على سطح المكتب"
+
+#, python-format
+#~ msgid "MCP Server Active"
+#~ msgstr "خادم MCP نشط"
+
+#, python-format
+#~ msgid "This MCP endpoint is live and accepting authenticated requests."
+#~ msgstr "نقطة نهاية MCP هذه فعّالة وتقبل الطلبات المُصادَق عليها."

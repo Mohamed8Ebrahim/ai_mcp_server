@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mcp_token_tree" model="ir.ui.view">
+        <field name="name">mcp.token.tree</field>
+        <field name="model">mcp.token</field>
+        <field name="arch" type="xml">
+            <tree class="o_mcp_list" decoration-muted="not active" decoration-danger="is_expired">
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="connection_state" widget="badge"
+                       decoration-success="connection_state == 'active'"
+                       decoration-info="connection_state == 'never'"
+                       decoration-warning="connection_state == 'idle'"
+                       decoration-danger="connection_state in ('expired', 'revoked')"
+                       decoration-muted="connection_state in ('draft', 'disabled')"/>
+                <field name="scope"/>
+                <field name="token_preview"/>
+                <field name="call_count"/>
+                <field name="last_used"/>
+                <field name="expiration_date"/>
+                <field name="is_expired" invisible="1"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mcp_token_form" model="ir.ui.view">
+        <field name="name">mcp.token.form</field>
+        <field name="model">mcp.token</field>
+        <field name="arch" type="xml">
+            <form class="o_mcp_form">
+                <header>
+                    <button name="action_reveal_token" type="object" string="Generate Token"
+                            class="btn-primary" icon="fa-key" invisible="token_hash"/>
+                    <button name="action_regenerate" type="object" string="Regenerate"
+                            confirm="This invalidates the current token immediately. Continue?"
+                            icon="fa-refresh" invisible="not token_hash"/>
+                    <button name="action_revoke" type="object" string="Revoke"
+                            confirm="Revoke this token? It will stop working immediately."
+                            invisible="not active" icon="fa-ban"/>
+                    <field name="token_hash" invisible="1"/>
+                    <field name="connection_state" invisible="1"/>
+                    <widget name="mcp_status_pill"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_logs" type="object" class="oe_stat_button" icon="fa-list">
+                            <field name="log_count" widget="statinfo" string="Calls Logged"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Expired" bg_color="text-bg-danger"
+                            invisible="not is_expired"/>
+                    <widget name="web_ribbon" title="Revoked" bg_color="text-bg-secondary"
+                            invisible="active"/>
+                    <div class="oe_title">
+                        <label for="name" string="Token Name"/>
+                        <h1><field name="name" placeholder="e.g. Claude Desktop - Ahmed"/></h1>
+                        <div class="text-muted">A label to recognise where this token is used.</div>
+                    </div>
+
+                    <group>
+                        <!-- ===== Identity &amp; Permissions ===== -->
+                        <group string="🔐 Identity &amp; Permissions" name="identity">
+                            <label for="user_id"/>
+                            <div>
+                                <field name="user_id" class="oe_inline"/>
+                                <div class="text-muted small">Every AI action runs with THIS user's permissions only. Use a limited user for safety.</div>
+                            </div>
+                            <label for="scope"/>
+                            <div>
+                                <field name="scope" class="oe_inline"/>
+                                <div class="text-muted small">Read = query only · Read &amp; Write = create/update/delete · Admin = also run methods.</div>
+                            </div>
+                            <field name="token_preview" readonly="1"/>
+                            <field name="active" invisible="1"/>
+                            <field name="is_expired" invisible="1"/>
+                        </group>
+
+                        <!-- ===== Lifetime &amp; Limits ===== -->
+                        <group string="⏱️ Lifetime &amp; Limits" name="limits">
+                            <label for="expiration_date"/>
+                            <div>
+                                <field name="expiration_date" class="oe_inline"/>
+                                <div class="text-muted small">Auto-disables the token after this date. Empty = never expires.</div>
+                            </div>
+                            <label for="rate_limit"/>
+                            <div>
+                                <field name="rate_limit" class="oe_inline"/>
+                                <div class="text-muted small">Max calls per minute — protects the server from overload. 0 = unlimited.</div>
+                            </div>
+                            <label for="ip_allowlist"/>
+                            <div>
+                                <field name="ip_allowlist" class="oe_inline" placeholder="e.g. 1.2.3.4, 5.6.7.8"/>
+                                <div class="text-muted small">Only these IPs may use the token. Empty = any origin.</div>
+                            </div>
+                        </group>
+                    </group>
+
+                    <notebook>
+                        <page string="🔒 Restrictions" name="restrictions">
+                            <div class="alert alert-light border" role="alert">
+                                <i class="fa fa-info-circle me-1" title="Info"/>
+                                Leave both lists <b>empty</b> for full access to everything the acting user
+                                can already reach. Add entries only to <b>narrow</b> the token down.
+                            </div>
+                            <group>
+                                <label for="model_ids"/>
+                                <div>
+                                    <field name="model_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <div class="text-muted small">Restricts the token to ONLY these models. e.g. only sale.order.</div>
+                                </div>
+                                <label for="tool_ids"/>
+                                <div>
+                                    <field name="tool_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <div class="text-muted small">Restricts the token to ONLY these MCP tools.</div>
+                                </div>
+                            </group>
+                        </page>
+
+                        <page string="🔌 How to Connect" name="connect">
+                            <div class="alert alert-info" role="alert">
+                                Click <b>Generate Token</b> (top-left) to reveal the secret and get the
+                                ready-to-paste connection URLs and step-by-step instructions.
+                            </div>
+                            <div class="o_mcp_field">
+                                <div class="o_mcp_label">MCP Endpoint</div>
+                                <field name="endpoint_url" widget="mcp_copy" nolabel="1"/>
+                            </div>
+                        </page>
+
+                        <page string="📊 Usage" name="usage">
+                            <group>
+                                <group>
+                                    <field name="connection_state"/>
+                                    <field name="call_count"/>
+                                    <field name="last_used"/>
+                                </group>
+                                <group>
+                                    <field name="last_ip"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_mcp_token_search" model="ir.ui.view">
+        <field name="name">mcp.token.search</field>
+        <field name="model">mcp.token</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="user_id"/>
+                <filter name="active" string="Active" domain="[('active','=',True)]"/>
+                <filter name="revoked" string="Revoked" domain="[('active','=',False)]"/>
+                <filter name="expired" string="Expired"
+                        domain="[('expiration_date','&lt;',context_today().strftime('%Y-%m-%d %H:%M:%S'))]"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_user" string="User" context="{'group_by':'user_id'}"/>
+                    <filter name="group_scope" string="Scope" context="{'group_by':'scope'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_mcp_token" model="ir.actions.act_window">
+        <field name="name">AI Access Keys</field>
+        <field name="res_model">mcp.token</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_active': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Create your first MCP access token</p>
+            <p>A token lets an AI client such as Claude connect to this database securely.
+               After creating one, click <b>Show Token</b> to copy the secret.</p>
+        </field>
+    </record>
+
+</odoo>

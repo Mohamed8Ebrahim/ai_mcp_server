@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mcp_token_reveal_form" model="ir.ui.view">
+        <field name="name">mcp.token.reveal.form</field>
+        <field name="model">mcp.token.reveal</field>
+        <field name="arch" type="xml">
+            <form class="o_mcp_form o_mcp_wizard">
+                <div class="alert alert-warning d-flex align-items-center" role="alert">
+                    <i class="fa fa-exclamation-triangle fa-lg me-2" title="Warning"/>
+                    <div>
+                        <strong>Copy your secret now.</strong>
+                        For security the token is stored only as a hash and
+                        <b>will never be shown again</b>. If you lose it, click Regenerate.
+                    </div>
+                </div>
+
+                <!-- Secret token — full width -->
+                <div class="o_mcp_field">
+                    <div class="o_mcp_label">Secret Token</div>
+                    <field name="raw_token" widget="mcp_copy" nolabel="1"/>
+                </div>
+
+                <notebook>
+                    <!-- ============ claude.ai WEB ============ -->
+                    <page string="🌐 Connect claude.ai (Web)" name="web">
+                        <div class="alert alert-info" role="alert">
+                            The web connector cannot send headers, so the token is embedded
+                            directly in this URL. Paste it as-is — no API key needed.
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">Connector URL — paste this into claude.ai</div>
+                            <field name="connector_url" widget="mcp_copy" nolabel="1"/>
+                        </div>
+                        <div class="o_mcp_label mt-3">Steps</div>
+                        <ol class="o_mcp_steps">
+                            <li>Open <b>claude.ai</b> → <b>Settings</b> → <b>Connectors</b>.</li>
+                            <li>Click <b>Add</b> → <b>Add custom connector</b>.</li>
+                            <li><b>Name:</b> any label (e.g. Odoo MCP).</li>
+                            <li><b>Remote MCP server URL:</b> paste the Connector URL above.</li>
+                            <li>Click <b>Add</b> — the status turns to <b>Connected ✓</b>.</li>
+                        </ol>
+                    </page>
+
+                    <!-- ============ Header-based AI clients ============ -->
+                    <page string="🖥️ Connect a Desktop AI Tool" name="desktop">
+                        <div class="alert alert-info" role="alert">
+                            For AI tools that support custom headers (Claude Desktop, Cursor and
+                            other MCP clients), use the base endpoint plus an Authorization header.
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">Endpoint URL</div>
+                            <field name="endpoint_url" widget="mcp_copy" nolabel="1"/>
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">Authorization Header</div>
+                            <field name="header_value" widget="mcp_copy" nolabel="1"/>
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">AI Client Config — ready to paste</div>
+                            <field name="client_config" widget="mcp_copy" nolabel="1"/>
+                            <div class="text-muted small mt-1">
+                                Paste this into your AI tool's MCP configuration file, then fully
+                                restart the tool. All values are already filled in.
+                            </div>
+                        </div>
+                    </page>
+                </notebook>
+
+                <footer>
+                    <button string="Done" class="btn-primary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

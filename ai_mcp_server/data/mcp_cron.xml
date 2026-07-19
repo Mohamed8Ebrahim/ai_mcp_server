@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="cron_mcp_purge_logs" model="ir.cron">
+        <field name="name">MCP: Purge Old Audit Logs</field>
+        <field name="model_id" ref="model_mcp_log"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_purge_logs()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="active" eval="True"/>
+    </record>
+
+</odoo>

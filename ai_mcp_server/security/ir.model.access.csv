@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mcp_token_user,mcp.token.user,model_mcp_token,group_mcp_user,1,1,1,1
+access_mcp_token_admin,mcp.token.admin,model_mcp_token,group_mcp_admin,1,1,1,1
+access_mcp_tool_user,mcp.tool.user,model_mcp_tool,group_mcp_user,1,0,0,0
+access_mcp_tool_admin,mcp.tool.admin,model_mcp_tool,group_mcp_admin,1,1,1,1
+access_mcp_log_user,mcp.log.user,model_mcp_log,group_mcp_user,1,0,0,0
+access_mcp_log_admin,mcp.log.admin,model_mcp_log,group_mcp_admin,1,1,1,1
+access_mcp_token_reveal_user,mcp.token.reveal.user,model_mcp_token_reveal,group_mcp_user,1,1,1,1

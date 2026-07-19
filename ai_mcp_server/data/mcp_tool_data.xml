@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+
+    <record id="tool_search_read" model="mcp.tool">
+        <field name="sequence">10</field>
+        <field name="name">Search &amp; Read</field>
+        <field name="technical_name">odoo_search_read</field>
+        <field name="required_scope">read</field>
+        <field name="description">Search records of a model and read selected fields in one call.</field>
+    </record>
+
+    <record id="tool_read" model="mcp.tool">
+        <field name="sequence">20</field>
+        <field name="name">Read Records</field>
+        <field name="technical_name">odoo_read</field>
+        <field name="required_scope">read</field>
+        <field name="description">Read specific fields of records by their IDs.</field>
+    </record>
+
+    <record id="tool_count" model="mcp.tool">
+        <field name="sequence">30</field>
+        <field name="name">Count</field>
+        <field name="technical_name">odoo_count</field>
+        <field name="required_scope">read</field>
+        <field name="description">Count the records matching a domain.</field>
+    </record>
+
+    <record id="tool_name_search" model="mcp.tool">
+        <field name="sequence">40</field>
+        <field name="name">Name Search</field>
+        <field name="technical_name">odoo_name_search</field>
+        <field name="required_scope">read</field>
+        <field name="description">Fuzzy-search records by display name to resolve names into IDs.</field>
+    </record>
+
+    <record id="tool_read_group" model="mcp.tool">
+        <field name="sequence">50</field>
+        <field name="name">Read Group (Analytics)</field>
+        <field name="technical_name">odoo_read_group</field>
+        <field name="required_scope">read</field>
+        <field name="description">Aggregate records grouped by fields for analytics and dashboards.</field>
+    </record>
+
+    <record id="tool_fields_get" model="mcp.tool">
+        <field name="sequence">60</field>
+        <field name="name">Fields Introspection</field>
+        <field name="technical_name">odoo_fields_get</field>
+        <field name="required_scope">read</field>
+        <field name="description">Return each field's type, label, help and relation for a model.</field>
+    </record>
+
+    <record id="tool_list_models" model="mcp.tool">
+        <field name="sequence">70</field>
+        <field name="name">List Models</field>
+        <field name="technical_name">odoo_list_models</field>
+        <field name="required_scope">read</field>
+        <field name="description">List the models the current user can access, optionally filtered.</field>
+    </record>
+
+    <record id="tool_create" model="mcp.tool">
+        <field name="sequence">80</field>
+        <field name="name">Create Record</field>
+        <field name="technical_name">odoo_create</field>
+        <field name="required_scope">write</field>
+        <field name="description">Create a new record and return its ID.</field>
+    </record>
+
+    <record id="tool_write" model="mcp.tool">
+        <field name="sequence">90</field>
+        <field name="name">Update Records</field>
+        <field name="technical_name">odoo_write</field>
+        <field name="required_scope">write</field>
+        <field name="description">Update existing records by ID with new field values.</field>
+    </record>
+
+    <record id="tool_unlink" model="mcp.tool">
+        <field name="sequence">100</field>
+        <field name="name">Delete Records</field>
+        <field name="technical_name">odoo_unlink</field>
+        <field name="required_scope">write</field>
+        <field name="description">Delete records by ID. Irreversible.</field>
+    </record>
+
+    <record id="tool_call_method" model="mcp.tool">
+        <field name="sequence">110</field>
+        <field name="name">Call Business Method</field>
+        <field name="technical_name">odoo_call_method</field>
+        <field name="required_scope">admin</field>
+        <field name="description">Execute a business method on records (admin scope required).</field>
+    </record>
+
+</odoo>

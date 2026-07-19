@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_mcp_config_settings" model="ir.ui.view">
+        <field name="name">mcp.res.config.settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form" position="inside">
+                <app data-string="MCP Server" string="MCP Server" name="ai_mcp_server"
+                     groups="ai_mcp_server.group_mcp_admin">
+                    <block title="Model Context Protocol Server"
+                           name="mcp_server_block">
+                        <setting id="mcp_enabled_setting" string="Enable MCP Server"
+                                 help="Turn the /mcp endpoint on or off for the whole database.">
+                            <field name="mcp_server_enabled"/>
+                        </setting>
+                        <setting id="mcp_endpoint_setting" string="Endpoint URL"
+                                 help="Paste this into your AI client connector configuration.">
+                            <field name="mcp_endpoint_url" readonly="1"/>
+                        </setting>
+                    </block>
+                    <block title="Safety &amp; Limits" name="mcp_limits_block">
+                        <setting string="Default Rate Limit" help="Applied to newly created tokens (calls/min).">
+                            <field name="mcp_default_rate_limit"/>
+                        </setting>
+                        <setting string="Max Records Per Call" help="Hard cap on records returned by any read tool.">
+                            <field name="mcp_max_records"/>
+                        </setting>
+                        <setting string="Log Retention (days)" help="Older audit logs can be purged. 0 = keep forever.">
+                            <field name="mcp_log_retention_days"/>
+                        </setting>
+                    </block>
+                </app>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_mcp_config_settings" model="ir.actions.act_window">
+        <field name="name">MCP Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module': 'ai_mcp_server'}</field>
+    </record>
+
+</odoo>
