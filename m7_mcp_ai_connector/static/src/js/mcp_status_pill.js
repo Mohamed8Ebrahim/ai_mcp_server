@@ -52,7 +52,7 @@ export class McpStatusPill extends Component {
         };
     }
 }
-McpStatusPill.template = "ai_mcp_connector.StatusPill";
+McpStatusPill.template = "m7_mcp_ai_connector.StatusPill";
 McpStatusPill.props = ["*"];
 
 registry.category("view_widgets").add("mcp_status_pill", {

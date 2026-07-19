@@ -48,7 +48,7 @@ class McpLog(models.Model):
     def _cron_purge_logs(self):
         """Scheduled cleanup of audit logs older than the configured retention."""
         days = self.env['ir.config_parameter'].sudo().get_param(
-            'ai_mcp_connector.log_retention_days', '90')
+            'm7_mcp_ai_connector.log_retention_days', '90')
         try:
             days = int(days)
         except (TypeError, ValueError):

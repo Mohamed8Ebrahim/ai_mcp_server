@@ -1,0 +1,1235 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* m7_mcp_ai_connector
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e-20260430\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-19 14:07+0000\n"
+"PO-Revision-Date: 2026-07-19 14:07+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "<b>Name:</b> any label (e.g. Odoo MCP)."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "<b>Remote MCP server URL:</b> paste the Connector URL above."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "<i class=\"fa fa-exclamation-triangle fa-lg me-2\" title=\"Warning\"/>"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid ""
+"<i class=\"fa fa-info-circle me-1\" title=\"Info\"/>\n"
+"                                Leave both lists <b>empty</b> for full access to everything the acting user\n"
+"                                can already reach. Add entries only to <b>narrow</b> the token down."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"<strong>Copy your secret now.</strong>\n"
+"                        For security the token is stored only as a hash and\n"
+"                        <b>will never be shown again</b>. If you lose it, click Regenerate."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__name
+msgid "A human friendly label to identify where this access token is used (e.g. 'Claude Desktop - Ahmed')."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "A label to recognise where this token is used."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__token_preview
+msgid "A masked preview of the secret token showing only its last characters for identification."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "A new secret token was generated. The previous token is now invalid."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.actions.act_window,help:m7_mcp_ai_connector.action_mcp_token
+msgid ""
+"A token lets an AI client such as Claude connect to this database securely.\n"
+"               After creating one, click <b>Show Token</b> to copy the secret."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.actions.act_window,name:m7_mcp_ai_connector.action_mcp_token
+#: model:ir.ui.menu,name:m7_mcp_ai_connector.menu_mcp_tokens
+msgid "AI Access Keys"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__client_config
+msgid "AI Client Config"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "AI Client Config — ready to paste"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/protocol.py:0
+#, python-format
+msgid "Access denied: %s"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__user_id
+msgid "Acted As"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__active
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_search
+msgid "Active"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__user_id
+msgid "Acts As User"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_tool__required_scope__admin
+msgid "Admin"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__scope__admin
+msgid "Administrator"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__model_ids
+msgid "Allowed Models"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__tool_ids
+msgid "Allowed Tools"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Applied to newly created tokens (calls/min)."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__arguments
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_form
+msgid "Arguments"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#: model:ir.actions.act_window,name:m7_mcp_ai_connector.action_mcp_log
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__log_ids
+#: model:ir.ui.menu,name:m7_mcp_ai_connector.menu_mcp_logs
+#, python-format
+msgid "Audit Logs"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__header_value
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Authorization Header"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Auto-disables the token after this date. Empty = never expires."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__never
+msgid "Awaiting First Connection"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__endpoint_url
+msgid "Base MCP endpoint for clients that send an Authorization header (e.g. Claude Desktop, Cursor)."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Calls Logged"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:res.groups,comment:m7_mcp_ai_connector.group_mcp_user
+msgid "Can create and manage their own MCP access tokens."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Click <b>Add</b> — the status turns to <b>Connected ✓</b>."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Click <b>Add</b> → <b>Add custom connector</b>."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid ""
+"Click <b>Generate Token</b> (top-left) to reveal the secret and get the\n"
+"                                ready-to-paste connection URLs and step-by-step instructions."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__client_ip
+msgid "Client IP"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Client IP %s is not allowed for this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__last_ip
+msgid "Client IP address recorded on the most recent use of this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_res_config_settings
+msgid "Config Settings"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.ui.menu,name:m7_mcp_ai_connector.menu_mcp_config
+msgid "Configuration"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__active
+msgid "Connected"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__connection_state
+msgid "Connection Status"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__connector_url
+msgid "Connector URL"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Connector URL — paste this into claude.ai"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.actions.act_window,help:m7_mcp_ai_connector.action_mcp_token
+msgid "Create your first MCP access token"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__create_uid
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__create_uid
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__create_uid
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__create_date
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__create_date
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__create_date
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+msgid "Date"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Default Rate Limit"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_res_config_settings__mcp_default_rate_limit
+msgid "Default Rate Limit (calls/min)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_res_config_settings__mcp_default_rate_limit
+msgid "Default per-minute call limit applied to newly created tokens."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__description
+msgid "Description"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_tool_form
+msgid "Description (sent to the AI client)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__display_name
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__display_name
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__display_name
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_tool__sequence
+msgid "Display order of the tool in the registry list."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Done"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__duration_ms
+msgid "Duration (ms)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_res_config_settings__mcp_server_enabled
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Enable MCP Server"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__active
+msgid "Enabled"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__endpoint_url
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_res_config_settings__mcp_endpoint_url
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Endpoint URL"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__error_message
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_form
+msgid "Error"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/protocol.py:0
+#, python-format
+msgid "Error: %s"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+msgid "Errors"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid ""
+"Every AI action runs with THIS user's permissions only. Use a limited user "
+"for safety."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__user_id
+msgid "Every MCP call made with this token executes strictly as this Odoo user, honouring all of that user's access rights and record rules."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__expiration_date
+msgid "Expiration Date"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__is_expired
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__expired
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_search
+msgid "Expired"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"For AI tools that support custom headers (Claude Desktop, Cursor and\n"
+"                            other MCP clients), use the base endpoint plus an Authorization header."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:res.groups,comment:m7_mcp_ai_connector.group_mcp_admin
+msgid ""
+"Full control over MCP tokens, tools, settings and audit logs across all "
+"users."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__log_ids
+msgid "Full history of MCP calls performed with this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Generate Token"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_tool__active
+msgid "Globally enable or disable this tool for every token. Disabled tools are hidden from the AI client's tool list."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_search
+msgid "Group By"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Hard cap on records returned by any read tool."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_res_config_settings__mcp_max_records
+msgid "Hard cap on the number of records any single read tool may return, protecting the server from oversized responses."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_tool__name
+msgid "Human friendly name of the MCP tool shown to administrators."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__id
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__id
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__id
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__id
+msgid "ID"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__ip_allowlist
+msgid "IP Allow-List"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__client_ip
+msgid "IP address of the AI client that issued the call."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__idle
+msgid "Idle / Disconnected"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__is_expired
+msgid "Indicates whether this token has passed its expiration date."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Invalid access token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__token_hash
+msgid "Irreversible SHA-256 hash of the secret token used to authenticate incoming requests; the raw token is never stored."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__arguments
+msgid "JSON snapshot of the arguments received for this call."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__method
+msgid "JSON-RPC Method"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__last_ip
+msgid "Last IP"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__write_uid
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__write_uid
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__write_uid
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__write_date
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__write_date
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__write_date
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__last_used
+msgid "Last Used"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__call_count
+msgid "Lifetime number of MCP calls served with this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__connection_state
+msgid "Live status of this token derived from real evidence — whether the MCP server is on, the token is generated/valid, and how recently it was actually used:\n• Server Disabled — the whole MCP server is switched off.\n• Revoked — this token was manually revoked.\n• Not Generated — no secret has been generated yet, so it cannot authenticate.\n• Expired — the token passed its expiration date.\n• Awaiting First Connection — ready, but never used yet.\n• Connected — used successfully within the active window.\n• Idle / Disconnected — used before, but not recently."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__log_count
+msgid "Log Count"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_res_config_settings__mcp_log_retention_days
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Log Retention (days)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:res.groups,name:m7_mcp_ai_connector.group_mcp_admin
+msgid "MCP Administrator"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_mcp_log
+msgid "MCP Audit Log"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__endpoint_url
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "MCP Endpoint"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_mcp_token
+msgid "MCP Personal Access Token"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_mcp_protocol
+msgid "MCP Protocol Handler"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.module.category,name:m7_mcp_ai_connector.module_category_mcp
+#: model:ir.ui.menu,name:m7_mcp_ai_connector.menu_mcp_root
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "MCP Server"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.actions.act_window,name:m7_mcp_ai_connector.action_mcp_config_settings
+msgid "MCP Settings"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_mcp_token_reveal
+msgid "MCP Token Reveal Wizard"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_mcp_tool_executor
+msgid "MCP Tool Executor"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model,name:m7_mcp_ai_connector.model_mcp_tool
+msgid "MCP Tool Registry"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:res.groups,name:m7_mcp_ai_connector.group_mcp_user
+msgid "MCP User"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.actions.server,name:m7_mcp_ai_connector.cron_mcp_purge_logs_ir_actions_server
+msgid "MCP: Purge Old Audit Logs"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.module.category,description:m7_mcp_ai_connector.module_category_mcp
+msgid "Manage AI (Model Context Protocol) access to Odoo."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_res_config_settings__mcp_server_enabled
+msgid "Master switch that turns the MCP endpoint on or off for the whole database."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_res_config_settings__mcp_max_records
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Max Records Per Call"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid ""
+"Max calls per minute — protects the server from overload. 0 = unlimited."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__rate_limit
+msgid "Maximum number of MCP calls allowed with this token per rolling minute. Set to 0 to disable rate limiting."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Method '%s' is not allowed."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_tool__required_scope
+msgid "Minimum token scope needed to invoke this tool."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Missing Bearer token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/protocol.py:0
+#, python-format
+msgid "Missing tool name."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__model_name
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+msgid "Model"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Model '%s' does not exist."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Model '%s' has no method '%s'."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Model '%s' is not permitted for this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Model Context Protocol Server"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_tool__description
+msgid "Natural language description sent to the AI client so it knows when and how to use this tool."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__draft
+msgid "Not Generated"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__log_count
+msgid "Number of audit log entries recorded for this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_res_config_settings__mcp_log_retention_days
+msgid "Number of days audit logs are kept before automatic cleanup. Set to 0 to keep logs forever."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Older audit logs can be purged. 0 = keep forever."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Only these IPs may use the token. Empty = any origin."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Open <b>claude.ai</b> → <b>Settings</b> → <b>Connectors</b>."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__ip_allowlist
+msgid "Optional comma separated list of client IP addresses permitted to use this token. Leave empty to allow any origin."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__expiration_date
+msgid "Optional date and time after which this token stops working. Leave empty for a token that never expires."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Paste this into your AI client connector configuration."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"Paste this into your AI tool's MCP configuration file, then fully\n"
+"                                restart the tool. All values are already filled in."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__scope
+msgid "Permission level granted to this token: Read Only allows queries only; Read & Write allows create/update/delete; Administrator also allows executing model methods."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__rate_limit
+msgid "Rate Limit (calls/min)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Rate limit exceeded (%s calls/min). Please slow down."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_tool__required_scope__read
+msgid "Read"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__scope__write
+msgid "Read & Write"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid ""
+"Read = query only · Read &amp; Write = create/update/delete · Admin = also "
+"run methods."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__scope__read
+msgid "Read Only"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__client_config
+msgid "Ready-to-paste MCP client configuration (via the mcp-remote bridge) with your endpoint and token already filled in — works with Claude Desktop, Cursor and any other MCP-compatible AI tool."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__connector_url
+msgid "Ready-to-paste URL with the token embedded, for clients that cannot send custom headers (e.g. the claude.ai web connector)."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Regenerate"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__required_scope
+msgid "Required Scope"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__tool_ids
+msgid "Restrict this token to these MCP tools only. Leave empty to expose every globally enabled tool."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__model_ids
+msgid "Restrict this token to these models only. Leave empty to allow every model the acting user can already access."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Restricts the token to ONLY these MCP tools."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Restricts the token to ONLY these models. e.g. only sale.order."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__result_summary
+msgid "Result Summary"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Revoke"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Revoke this token? It will stop working immediately."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__revoked
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_search
+msgid "Revoked"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Safety & Limits"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__scope
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_search
+msgid "Scope"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__raw_token
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Secret Token"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_token__connection_state__disabled
+msgid "Server Disabled"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__duration_ms
+msgid "Server side execution time of the call in milliseconds."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.ui.menu,name:m7_mcp_ai_connector.menu_mcp_settings
+msgid "Settings"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__result_summary
+msgid "Short summary of the outcome, such as the number of records returned or affected."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Steps"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__success
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+msgid "Success"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__method
+msgid "The MCP JSON-RPC method invoked (e.g. tools/call, initialize)."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_res_config_settings__mcp_endpoint_url
+msgid "The MCP endpoint URL to configure inside your AI client."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__tool_name
+msgid "The MCP tool that was executed for this call."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__model_name
+msgid "The Odoo model targeted by this call, when applicable."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__user_id
+msgid "The Odoo user the call was executed as."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__token_id
+msgid "The access token used for this MCP call."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__endpoint_url
+msgid "The base MCP endpoint URL of this server; the full secret is only shown once when you generate the token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__error_message
+msgid "The error message captured when the call failed."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__header_value
+msgid "The exact Authorization header value for header-based clients."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_tool__technical_name
+msgid "The exact tool identifier exposed to the AI client over MCP (e.g. 'odoo_search_read'). Must be unique."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "The secret token was regenerated. The previous token is now invalid."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__token_id
+msgid "The token whose freshly generated secret is being displayed."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.constraint,message:m7_mcp_ai_connector.constraint_mcp_tool_technical_name_uniq
+msgid "The tool technical name must be unique."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"The web connector cannot send headers, so the token is embedded\n"
+"                            directly in this URL. Paste it as-is — no API key needed."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "This access token has been revoked."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "This access token has expired."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "This invalidates the current token immediately. Continue?"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "This token's scope '%s' is insufficient; '%s' is required."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__last_used
+msgid "Timestamp of the most recent successful use of this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__token_id
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__token_id
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+msgid "Token"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__token_hash
+msgid "Token Hash"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__name
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "Token Name"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__token_preview
+msgid "Token Preview"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_log__tool_name
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_log_search
+msgid "Tool"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Tool '%s' has no implementation."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Tool '%s' is disabled."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Tool '%s' is not permitted for this token."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__name
+msgid "Tool Label"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_tool__technical_name
+msgid "Tool Name"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.actions.act_window,name:m7_mcp_ai_connector.action_mcp_tool
+#: model:ir.ui.menu,name:m7_mcp_ai_connector.menu_mcp_tools
+msgid "Tools"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__call_count
+msgid "Total Calls"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Turn the /mcp endpoint on or off for the whole database."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__active
+msgid "Uncheck to instantly revoke this token; revoked tokens are rejected on every request."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/protocol.py:0
+#, python-format
+msgid "Unknown method '%s'."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Unknown tool '%s'."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_search
+msgid "User"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_log__success
+msgid "Whether the call completed successfully."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields.selection,name:m7_mcp_ai_connector.selection__mcp_tool__required_scope__write
+msgid "Write"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#. odoo-python
+#: code:addons/m7_mcp_ai_connector/models/mcp_token.py:0
+#, python-format
+msgid "Your MCP Access Token"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__raw_token
+msgid "Your secret access token. Copy it now — for security it is stored only as a hash and cannot be shown again."
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "e.g. 1.2.3.4, 5.6.7.8"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "e.g. Claude Desktop - Ahmed"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "⏱️ Lifetime & Limits"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "🌐 Connect claude.ai (Web)"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "📊 Usage"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "🔌 How to Connect"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "🔐 Identity & Permissions"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_form
+msgid "🔒 Restrictions"
+msgstr ""
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "🖥️ Connect a Desktop AI Tool"
+msgstr ""

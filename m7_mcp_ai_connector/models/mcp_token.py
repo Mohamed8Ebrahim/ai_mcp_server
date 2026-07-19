@@ -137,12 +137,12 @@ class McpToken(models.Model):
 
     def _server_enabled(self):
         param = self.env['ir.config_parameter'].sudo().get_param(
-            'ai_mcp_connector.enabled', 'True')
+            'm7_mcp_ai_connector.enabled', 'True')
         return str(param).lower() not in ('false', '0', '')
 
     def _active_window_minutes(self):
         param = self.env['ir.config_parameter'].sudo().get_param(
-            'ai_mcp_connector.active_window_minutes', DEFAULT_ACTIVE_WINDOW_MINUTES)
+            'm7_mcp_ai_connector.active_window_minutes', DEFAULT_ACTIVE_WINDOW_MINUTES)
         try:
             return int(param)
         except (TypeError, ValueError):
@@ -192,7 +192,7 @@ class McpToken(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         default_limit = self.env['ir.config_parameter'].sudo().get_param(
-            'ai_mcp_connector.default_rate_limit')
+            'm7_mcp_ai_connector.default_rate_limit')
         for vals in vals_list:
             if default_limit and not vals.get('rate_limit'):
                 try:

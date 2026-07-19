@@ -44,7 +44,7 @@ class McpController(http.Controller):
 
     def _server_enabled(self):
         param = request.env['ir.config_parameter'].sudo().get_param(
-            'ai_mcp_connector.enabled', 'True')
+            'm7_mcp_ai_connector.enabled', 'True')
         return str(param).lower() not in ('false', '0', '')
 
     # ------------------------------------------------------------------
