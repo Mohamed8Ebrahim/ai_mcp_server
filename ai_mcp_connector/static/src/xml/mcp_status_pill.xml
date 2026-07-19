@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates xml:space="preserve">
 
-    <t t-name="ai_mcp_server.StatusPill">
+    <t t-name="ai_mcp_connector.StatusPill">
         <span class="o_mcp_pill" t-att-class="'o_mcp_pill--' + pill.value"
               t-att-title="pill.label">
             <span class="o_mcp_dot" t-att-class="pill.live ? 'o_mcp_dot--live' : ''"/>
@@ -9,7 +9,7 @@
         </span>
     </t>
 
-    <t t-name="ai_mcp_server.McpCopy">
+    <t t-name="ai_mcp_connector.McpCopy">
         <div t-att-class="isBlock ? 'o_mcp_copy o_mcp_copy--block' : 'o_mcp_copy'">
             <pre t-if="isBlock" class="o_mcp_pre"
                  style="direction:ltr;text-align:left;unicode-bidi:isolate;" t-esc="value"/>

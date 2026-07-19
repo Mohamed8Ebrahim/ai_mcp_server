@@ -7,8 +7,8 @@
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
-                <app data-string="MCP Server" string="MCP Server" name="ai_mcp_server"
-                     groups="ai_mcp_server.group_mcp_admin">
+                <app data-string="MCP Server" string="MCP Server" name="ai_mcp_connector"
+                     groups="ai_mcp_connector.group_mcp_admin">
                     <block title="Model Context Protocol Server"
                            name="mcp_server_block">
                         <setting id="mcp_enabled_setting" string="Enable MCP Server"
@@ -41,7 +41,7 @@
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
         <field name="target">inline</field>
-        <field name="context">{'module': 'ai_mcp_server'}</field>
+        <field name="context">{'module': 'ai_mcp_connector'}</field>
     </record>
 
 </odoo>

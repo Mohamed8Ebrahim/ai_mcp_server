@@ -49,10 +49,10 @@ Business Benefits
     ],
     'assets': {
         'web.assets_backend': [
-            'ai_mcp_server/static/src/scss/mcp_backend.scss',
-            'ai_mcp_server/static/src/js/mcp_status_pill.js',
-            'ai_mcp_server/static/src/js/mcp_copy.js',
-            'ai_mcp_server/static/src/xml/mcp_status_pill.xml',
+            'ai_mcp_connector/static/src/scss/mcp_backend.scss',
+            'ai_mcp_connector/static/src/js/mcp_status_pill.js',
+            'ai_mcp_connector/static/src/js/mcp_copy.js',
+            'ai_mcp_connector/static/src/xml/mcp_status_pill.xml',
         ],
     },
     'installable': True,

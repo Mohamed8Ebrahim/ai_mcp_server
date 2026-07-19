@@ -63,7 +63,7 @@ export class McpCopy extends Component {
         }
     }
 }
-McpCopy.template = "ai_mcp_server.McpCopy";
+McpCopy.template = "ai_mcp_connector.McpCopy";
 McpCopy.props = { ...standardFieldProps };
 
 registry.category("fields").add("mcp_copy", { component: McpCopy });

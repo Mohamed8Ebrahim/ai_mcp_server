@@ -258,7 +258,7 @@ class McpToolExecutor(models.AbstractModel):
 
     def _max_records(self):
         val = self.env['ir.config_parameter'].sudo().get_param(
-            'ai_mcp_server.max_records', '200')
+            'ai_mcp_connector.max_records', '200')
         try:
             return max(1, int(val))
         except (TypeError, ValueError):
