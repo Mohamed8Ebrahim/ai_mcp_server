@@ -31,8 +31,7 @@ class McpTokenReveal(models.TransientModel):
 
     @api.depends('raw_token')
     def _compute_urls(self):
-        # base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
-        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
+        base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
         for rec in self:
             token = rec.raw_token or ''
             rec.endpoint_url = base + '/mcp'
