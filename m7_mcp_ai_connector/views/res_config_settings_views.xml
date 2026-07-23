@@ -40,8 +40,7 @@
         <field name="name">MCP Settings</field>
         <field name="res_model">res.config.settings</field>
         <field name="view_mode">form</field>
-        <field name="target">inline</field>
-        <field name="context">{'module': 'm7_mcp_ai_connector'}</field>
+        <field name="context">{'module': 'm7_mcp_ai_connector', 'bin_size': False}</field>
     </record>
 
 </odoo>

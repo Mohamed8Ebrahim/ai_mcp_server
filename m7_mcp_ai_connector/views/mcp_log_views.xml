@@ -63,7 +63,8 @@
                 <field name="user_id"/>
                 <filter name="success" string="Success" domain="[('success','=',True)]"/>
                 <filter name="errors" string="Errors" domain="[('success','=',False)]"/>
-                <group expand="0" string="Group By">
+                <separator/>
+                <group name="group_by">
                     <filter name="group_tool" string="Tool" context="{'group_by':'tool_name'}"/>
                     <filter name="group_model" string="Model" context="{'group_by':'model_name'}"/>
                     <filter name="group_token" string="Token" context="{'group_by':'token_id'}"/>

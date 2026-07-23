@@ -119,7 +119,8 @@ class McpToken(models.Model):
              "shown once when you generate the token.")
 
     def _compute_endpoint_url(self):
-        base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
+        # base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
+        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
         for rec in self:
             rec.endpoint_url = base + '/mcp'
 

@@ -172,7 +172,8 @@
                 <filter name="revoked" string="Revoked" domain="[('active','=',False)]"/>
                 <filter name="expired" string="Expired"
                         domain="[('expiration_date','&lt;',context_today().strftime('%Y-%m-%d %H:%M:%S'))]"/>
-                <group expand="0" string="Group By">
+                <separator/>
+                <group name="group_by">
                     <filter name="group_user" string="User" context="{'group_by':'user_id'}"/>
                     <filter name="group_scope" string="Scope" context="{'group_by':'scope'}"/>
                 </group>
