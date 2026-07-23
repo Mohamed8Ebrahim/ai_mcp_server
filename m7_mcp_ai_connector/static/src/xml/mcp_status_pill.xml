@@ -13,9 +13,13 @@
         <div t-att-class="isBlock ? 'o_mcp_copy o_mcp_copy--block' : 'o_mcp_copy'">
             <pre t-if="isBlock" class="o_mcp_pre"
                  style="direction:ltr;text-align:left;unicode-bidi:isolate;" t-esc="value"/>
+            <span t-elif="isEmpty" class="o_mcp_inline o_mcp_inline--empty">
+                —
+            </span>
             <span t-else="" class="o_mcp_inline"
                   style="direction:ltr;text-align:left;unicode-bidi:isolate;" t-esc="value"/>
             <button type="button" class="o_mcp_copy_btn" t-on-click="onCopy"
+                    t-att-disabled="isEmpty ? 'disabled' : undefined"
                     t-att-title="state.copied ? 'Copied!' : 'Copy to clipboard'">
                 <i class="fa" t-att-class="state.copied ? 'fa-check' : 'fa-clipboard'"/>
                 <span t-esc="state.copied ? 'Copied!' : 'Copy'"/>

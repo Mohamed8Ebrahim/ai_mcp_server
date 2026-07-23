@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_mcp_tool_tree" model="ir.ui.view">
-        <field name="name">mcp.tool.tree</field>
+    <record id="view_mcp_tool_list" model="ir.ui.view">
+        <field name="name">mcp.tool.list</field>
         <field name="model">mcp.tool</field>
         <field name="arch" type="xml">
-            <tree class="o_mcp_list" editable="bottom" decoration-muted="not active">
+            <list class="o_mcp_list" editable="bottom" decoration-muted="not active">
                 <field name="sequence" widget="handle"/>
                 <field name="name"/>
                 <field name="technical_name"/>
                 <field name="required_scope"/>
                 <field name="description"/>
                 <field name="active" widget="boolean_toggle"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -47,7 +47,7 @@
     <record id="action_mcp_tool" model="ir.actions.act_window">
         <field name="name">Tools</field>
         <field name="res_model">mcp.tool</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
 </odoo>

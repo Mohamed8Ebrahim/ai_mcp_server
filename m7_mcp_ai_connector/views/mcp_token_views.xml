@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_mcp_token_tree" model="ir.ui.view">
-        <field name="name">mcp.token.tree</field>
+    <record id="view_mcp_token_list" model="ir.ui.view">
+        <field name="name">mcp.token.list</field>
         <field name="model">mcp.token</field>
         <field name="arch" type="xml">
-            <tree class="o_mcp_list" decoration-muted="not active" decoration-danger="is_expired">
+            <list class="o_mcp_list" decoration-muted="not active" decoration-danger="is_expired">
                 <field name="name"/>
                 <field name="user_id"/>
                 <field name="connection_state" widget="badge"
@@ -21,7 +21,7 @@
                 <field name="expiration_date"/>
                 <field name="is_expired" invisible="1"/>
                 <field name="active" widget="boolean_toggle"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -55,7 +55,9 @@
                             invisible="active"/>
                     <div class="oe_title">
                         <label for="name" string="Token Name"/>
-                        <h1><field name="name" placeholder="e.g. Claude Desktop - Ahmed"/></h1>
+                        <h1>
+                            <field name="name" placeholder="e.g. Claude Desktop - Ahmed"/>
+                        </h1>
                         <div class="text-muted">A label to recognise where this token is used.</div>
                     </div>
 
@@ -65,12 +67,16 @@
                             <label for="user_id"/>
                             <div>
                                 <field name="user_id" class="oe_inline"/>
-                                <div class="text-muted small">Every AI action runs with THIS user's permissions only. Use a limited user for safety.</div>
+                                <div class="text-muted small">Every AI action runs with THIS user's permissions only.
+                                    Use a limited user for safety.
+                                </div>
                             </div>
                             <label for="scope"/>
                             <div>
                                 <field name="scope" class="oe_inline"/>
-                                <div class="text-muted small">Read = query only · Read &amp; Write = create/update/delete · Admin = also run methods.</div>
+                                <div class="text-muted small">Read = query only · Read &amp; Write =
+                                    create/update/delete · Admin = also run methods.
+                                </div>
                             </div>
                             <field name="token_preview" readonly="1"/>
                             <field name="active" invisible="1"/>
@@ -82,17 +88,22 @@
                             <label for="expiration_date"/>
                             <div>
                                 <field name="expiration_date" class="oe_inline"/>
-                                <div class="text-muted small">Auto-disables the token after this date. Empty = never expires.</div>
+                                <div class="text-muted small">Auto-disables the token after this date. Empty = never
+                                    expires.
+                                </div>
                             </div>
                             <label for="rate_limit"/>
                             <div>
                                 <field name="rate_limit" class="oe_inline"/>
-                                <div class="text-muted small">Max calls per minute — protects the server from overload. 0 = unlimited.</div>
+                                <div class="text-muted small">Max calls per minute — protects the server from overload.
+                                    0 = unlimited.
+                                </div>
                             </div>
                             <label for="ip_allowlist"/>
                             <div>
                                 <field name="ip_allowlist" class="oe_inline" placeholder="e.g. 1.2.3.4, 5.6.7.8"/>
-                                <div class="text-muted small">Only these IPs may use the token. Empty = any origin.</div>
+                                <div class="text-muted small">Only these IPs may use the token. Empty = any origin.
+                                </div>
                             </div>
                         </group>
                     </group>
@@ -108,7 +119,9 @@
                                 <label for="model_ids"/>
                                 <div>
                                     <field name="model_ids" widget="many2many_tags" options="{'no_create': True}"/>
-                                    <div class="text-muted small">Restricts the token to ONLY these models. e.g. only sale.order.</div>
+                                    <div class="text-muted small">Restricts the token to ONLY these models. e.g. only
+                                        sale.order.
+                                    </div>
                                 </div>
                                 <label for="tool_ids"/>
                                 <div>
@@ -143,10 +156,7 @@
                         </page>
                     </notebook>
                 </sheet>
-                <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
-                </div>
+                <chatter/>
             </form>
         </field>
     </record>
@@ -173,12 +183,13 @@
     <record id="action_mcp_token" model="ir.actions.act_window">
         <field name="name">AI Access Keys</field>
         <field name="res_model">mcp.token</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'search_default_active': 1}</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create your first MCP access token</p>
             <p>A token lets an AI client such as Claude connect to this database securely.
-               After creating one, click <b>Show Token</b> to copy the secret.</p>
+                After creating one, click <b>Show Token</b> to copy the secret.
+            </p>
         </field>
     </record>
 

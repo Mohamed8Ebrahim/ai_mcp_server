@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_mcp_log_tree" model="ir.ui.view">
-        <field name="name">mcp.log.tree</field>
+    <record id="view_mcp_log_list" model="ir.ui.view">
+        <field name="name">mcp.log.list</field>
         <field name="model">mcp.log</field>
         <field name="arch" type="xml">
-            <tree class="o_mcp_list" decoration-danger="not success" create="false" edit="false">
+            <list class="o_mcp_list" decoration-danger="not success" create="false" edit="false">
                 <field name="create_date"/>
                 <field name="token_id"/>
                 <field name="user_id"/>
@@ -15,7 +15,7 @@
                 <field name="duration_ms" widget="float" digits="[6,1]"/>
                 <field name="client_ip"/>
                 <field name="success"/>
-            </tree>
+            </list>
         </field>
     </record>
 
@@ -76,7 +76,7 @@
     <record id="action_mcp_log" model="ir.actions.act_window">
         <field name="name">Audit Logs</field>
         <field name="res_model">mcp.log</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
         <field name="context">{'search_default_errors': 0}</field>
     </record>
 

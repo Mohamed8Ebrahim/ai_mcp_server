@@ -10,6 +10,9 @@ import { standardFieldProps } from "@web/views/fields/standard_field_props";
  * code block; single-line values render as an inline code chip.
  */
 export class McpCopy extends Component {
+    static template = "m7_mcp_ai_connector.McpCopy";
+    static props = { ...standardFieldProps };
+
     setup() {
         this.state = useState({ copied: false });
         this._timer = null;
@@ -28,16 +31,14 @@ export class McpCopy extends Component {
     async onCopy() {
         const text = this.value;
         let ok = false;
-        // 1) Modern API — only available on secure contexts (https / localhost)
         if (window.isSecureContext && navigator.clipboard) {
             try {
                 await navigator.clipboard.writeText(text);
                 ok = true;
-            } catch (e) {
+            } catch {
                 ok = false;
             }
         }
-        // 2) Legacy fallback that works over plain HTTP
         if (!ok) {
             try {
                 const ta = document.createElement("textarea");
@@ -52,7 +53,7 @@ export class McpCopy extends Component {
                 ta.setSelectionRange(0, text.length);
                 ok = document.execCommand("copy");
                 document.body.removeChild(ta);
-            } catch (e) {
+            } catch {
                 ok = false;
             }
         }
@@ -63,7 +64,8 @@ export class McpCopy extends Component {
         }
     }
 }
-McpCopy.template = "m7_mcp_ai_connector.McpCopy";
-McpCopy.props = { ...standardFieldProps };
 
-registry.category("fields").add("mcp_copy", { component: McpCopy });
+registry.category("fields").add("mcp_copy", {
+    component: McpCopy,
+    supportedTypes: ["char", "text"],
+});
