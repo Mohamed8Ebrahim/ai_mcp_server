@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 PROTOCOL_VERSION = '2024-11-05'
 SERVER_NAME = 'Odoo MCP Server'
-SERVER_VERSION = '17.0.1.0.0'
+SERVER_VERSION = '18.0.2.0.0'
 
 # JSON-RPC 2.0 standard error codes.
 PARSE_ERROR = -32700
@@ -73,7 +73,10 @@ class McpProtocol(models.AbstractModel):
         # a client connects — tool calls already register via _register_use.
         if method in ('initialize', 'tools/list', 'ping'):
             try:
-                token._touch(client_ip)
+                # The handshake carries the connecting client's identity in
+                # clientInfo; capture it so the token shows what connected.
+                client_info = params.get('clientInfo') if method == 'initialize' else None
+                token._touch(client_ip, client_info=client_info)
             except Exception:  # noqa: BLE001 - never break the response over a touch
                 _logger.exception("MCP: failed to touch token on %s", method)
 

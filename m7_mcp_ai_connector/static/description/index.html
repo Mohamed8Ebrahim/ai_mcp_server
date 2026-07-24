@@ -5,7 +5,7 @@
 
 <!-- ══════════════ ANIMATED BANNER ══════════════ -->
 <div style="text-align:center;padding:0 0 8px;">
-  <img src="banner.gif" alt="AI MCP Server — connect Claude, Cursor and AI assistants to Odoo" style="width:100%;max-width:1100px;height:auto;border-radius:14px;"/>
+  <img src="banner.gif" alt="AI MCP Server — connect Claude, ChatGPT, Gemini, Cursor and any MCP client to Odoo" style="width:100%;max-width:1100px;height:auto;border-radius:14px;"/>
 </div>
 
 <!-- ══════════════ INTRO ══════════════ -->
@@ -13,8 +13,8 @@
   <p style="font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#6366f1;margin:0 0 10px;">Odoo 18 &nbsp;•&nbsp; Secure &nbsp;•&nbsp; Full Audit Trail</p>
   <h1 style="font-size:34px;font-weight:900;color:#0f172a;margin:0 0 14px;">An AI Assistant for Your Odoo Data</h1>
   <p style="font-size:17px;line-height:1.75;color:#475569;margin:0;">
-    Securely connect AI assistants like <strong style="color:#6366f1;">Claude</strong>, <strong style="color:#8b5cf6;">Claude Desktop</strong> and <strong style="color:#0ea5e9;">Cursor</strong>
-    to your <strong style="color:#7c3aed;">Odoo</strong> database. Ask about your data and manage it in natural language —
+    Securely connect AI assistants &mdash; <strong style="color:#c2410c;">Claude</strong>, <strong style="color:#0f9d82;">ChatGPT</strong>, <strong style="color:#3b82f6;">Gemini</strong>, <strong style="color:#0ea5e9;">Cursor</strong> and any MCP client &mdash;
+    to your <strong style="color:#7c3aed;">Odoo</strong> database. Ask about your data and manage it in natural language &mdash;
     with fine-grained permissions and a complete log of every action. Self-hosted, no Node.js, no external bridge.
   </p>
 </div>
@@ -34,6 +34,14 @@
       <h3 style="font-size:16px;font-weight:800;color:#6366f1;margin:0 0 6px;">🤖 Natural-Language Control</h3>
       <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Ask about sales, customers and invoices, and create or update records in any language — no complex screens.</p>
     </div>
+    <div style="border:1px solid #e2e8f0;border-left:4px solid #0f9d82;border-radius:12px;padding:18px 20px;">
+      <h3 style="font-size:16px;font-weight:800;color:#0f9d82;margin:0 0 6px;">🔌 Connect Any AI Assistant</h3>
+      <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Dedicated one-click setup tabs for Claude, ChatGPT, Gemini, Cursor, Claude Desktop and any MCP-ready client.</p>
+    </div>
+    <div style="border:1px solid #e2e8f0;border-left:4px solid #3b82f6;border-radius:12px;padding:18px 20px;">
+      <h3 style="font-size:16px;font-weight:800;color:#3b82f6;margin:0 0 6px;">🔎 ChatGPT Search &amp; Fetch</h3>
+      <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Built-in <strong>search</strong> and <strong>fetch</strong> tools make the server work out-of-the-box with ChatGPT connectors and Deep Research.</p>
+    </div>
     <div style="border:1px solid #e2e8f0;border-left:4px solid #8b5cf6;border-radius:12px;padding:18px 20px;">
       <h3 style="font-size:16px;font-weight:800;color:#8b5cf6;margin:0 0 6px;">🔑 Revocable Access Keys</h3>
       <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Every AI assistant connects through its own Bearer token that you can revoke or regenerate in one click.</p>
@@ -44,15 +52,15 @@
     </div>
     <div style="border:1px solid #e2e8f0;border-left:4px solid #f59e0b;border-radius:12px;padding:18px 20px;">
       <h3 style="font-size:16px;font-weight:800;color:#f59e0b;margin:0 0 6px;">📝 Complete Audit Trail</h3>
-      <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Every call is logged: tool, model, arguments, result size, duration, client IP and success state.</p>
+      <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Every call is logged — tool, model, arguments, duration, client IP and success state — and each key shows which AI client last connected.</p>
     </div>
     <div style="border:1px solid #e2e8f0;border-left:4px solid #ec4899;border-radius:12px;padding:18px 20px;">
       <h3 style="font-size:16px;font-weight:800;color:#ec4899;margin:0 0 6px;">⏱️ Limits &amp; Protection</h3>
       <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Per-minute rate limiting, allowed clients and automatic token expiry — protect the server from overload.</p>
     </div>
     <div style="border:1px solid #e2e8f0;border-left:4px solid #0ea5e9;border-radius:12px;padding:18px 20px;">
-      <h3 style="font-size:16px;font-weight:800;color:#0ea5e9;margin:0 0 6px;">🔌 Works With Your Tools</h3>
-      <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">Compatible with Claude, Claude Desktop, Cursor and any MCP-ready AI client — a native JSON-RPC 2.0 endpoint at /mcp.</p>
+      <h3 style="font-size:16px;font-weight:800;color:#0ea5e9;margin:0 0 6px;">🌗 Light &amp; Dark Mode</h3>
+      <p style="font-size:14px;line-height:1.6;color:#475569;margin:0;">A polished, self-contained interface that stays perfectly readable in both Odoo light and dark themes.</p>
     </div>
   </div>
 </div>
@@ -60,10 +68,13 @@
 <!-- ══════════════ COMPATIBLE TOOLS ══════════════ -->
 <div style="max-width:960px;margin:0 auto;padding:26px 24px;text-align:center;">
   <h2 style="font-size:22px;font-weight:900;color:#0f172a;margin:0 0 18px;">Connect Any AI Assistant</h2>
-  <span style="display:inline-block;border:1.5px solid #c7d2fe;color:#3730a3;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">🤖 Claude</span>
+  <span style="display:inline-block;border:1.5px solid #fed7aa;color:#c2410c;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">🤖 Claude</span>
+  <span style="display:inline-block;border:1.5px solid #99f6e4;color:#0f766e;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">💬 ChatGPT</span>
+  <span style="display:inline-block;border:1.5px solid #bfdbfe;color:#1d4ed8;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">✨ Gemini</span>
   <span style="display:inline-block;border:1.5px solid #ddd6fe;color:#5b21b6;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">💻 Claude Desktop</span>
   <span style="display:inline-block;border:1.5px solid #a5f3fc;color:#155e75;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">⌨️ Cursor</span>
-  <span style="display:inline-block;border:1.5px dashed #cbd5e1;color:#64748b;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">+ Any MCP-compatible AI (ChatGPT, Gemini &amp; more as they adopt MCP)</span>
+  <span style="display:inline-block;border:1.5px dashed #cbd5e1;color:#64748b;font-size:14px;font-weight:700;padding:9px 20px;border-radius:999px;margin:5px;">+ Any MCP-compatible client</span>
+  <p style="font-size:13px;color:#94a3b8;margin:16px 0 0;">A native JSON-RPC 2.0 / Streamable-HTTP endpoint at <strong>/mcp</strong> — no Node.js, Redis or external bridge required.</p>
 </div>
 
 <!-- ══════════════ SCREENSHOTS ══════════════ -->
@@ -72,7 +83,7 @@
 
   <div style="margin-bottom:34px;">
     <h3 style="font-size:17px;font-weight:800;color:#6366f1;margin:0 0 4px;">🧰 Ready-Made, Governed Tools</h3>
-    <p style="font-size:14px;color:#64748b;margin:0 0 12px;">A full library of tools (search, read, create, update, analytics) with an enable/disable toggle and a required scope per tool.</p>
+    <p style="font-size:14px;color:#64748b;margin:0 0 12px;">A full library of tools — search, read, create, update, analytics, plus ChatGPT search &amp; fetch — with an enable/disable toggle and a required scope per tool.</p>
     <img src="screenshots/tools-registry.png" alt="MCP tools registry" style="width:100%;height:auto;display:block;border-radius:12px;border:1px solid #e2e8f0;"/>
   </div>
 
@@ -99,7 +110,7 @@
   </div>
   <div style="border:1px solid #e2e8f0;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
     <strong style="color:#8b5cf6;">2. Connect Your AI Assistant</strong>
-    <span style="color:#475569;font-size:14px;"> — paste the ready-made connector URL or config into Claude, Cursor or claude.ai.</span>
+    <span style="color:#475569;font-size:14px;"> — pick the built-in tab for Claude, ChatGPT, Gemini, Cursor or claude.ai and paste the ready-made URL or config.</span>
   </div>
   <div style="border:1px solid #e2e8f0;border-radius:12px;padding:16px 20px;margin-bottom:12px;">
     <strong style="color:#10b981;">3. Ask in Your Own Words</strong>
@@ -122,7 +133,7 @@
 <!-- ══════════════ FOOTER ══════════════ -->
 <div style="max-width:960px;margin:0 auto;padding:22px 24px 40px;text-align:center;border-top:1px solid #e2e8f0;">
   <p style="font-size:15px;font-weight:800;color:#0f172a;margin:0 0 6px;">AI MCP Server for Odoo 18</p>
-  <p style="font-size:13px;color:#94a3b8;margin:0;">Version 18.0.1.0.0 · License OPL-1 · by M7hm6d</p>
+  <p style="font-size:13px;color:#94a3b8;margin:0;">Version 18.0.2.0.0 · License OPL-1 · by M7hm6d</p>
 </div>
 
 </body>

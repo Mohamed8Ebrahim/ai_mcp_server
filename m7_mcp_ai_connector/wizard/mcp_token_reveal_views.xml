@@ -43,7 +43,7 @@
                     </page>
 
                     <!-- ============ Header-based AI clients ============ -->
-                    <page string="🖥️ Connect a Desktop AI Tool" name="desktop">
+                    <page string="🖥️ Connect a Desktop AI Tool and Cursor" name="desktop">
                         <div class="alert alert-info" role="alert">
                             For AI tools that support custom headers (Claude Desktop, Cursor and
                             other MCP clients), use the base endpoint plus an Authorization header.
@@ -63,6 +63,53 @@
                                 Paste this into your AI tool's MCP configuration file, then fully
                                 restart the tool. All values are already filled in.
                             </div>
+                        </div>
+                    </page>
+
+                    <!-- ============ ChatGPT ============ -->
+                    <page string="🤖 Connect ChatGPT" name="chatgpt">
+                        <div class="alert alert-info" role="alert">
+                            ChatGPT reaches this server through its <b>Developer Mode</b> custom
+                            connector, using the base endpoint plus an Authorization header. It only
+                            uses the <code>search</code> and <code>fetch</code> tools, which this
+                            server already provides.
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">MCP Server URL</div>
+                            <field name="endpoint_url" widget="mcp_copy" nolabel="1"/>
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">Authorization Header</div>
+                            <field name="header_value" widget="mcp_copy" nolabel="1"/>
+                        </div>
+                        <div class="o_mcp_label mt-3">Steps</div>
+                        <ol class="o_mcp_steps">
+                            <li>Open <b>ChatGPT</b> → <b>Settings</b> → <b>Connectors</b> (Apps).</li>
+                            <li>Enable <b>Developer mode</b>, then <b>Add custom connector</b>.</li>
+                            <li><b>MCP Server URL:</b> paste the URL above (must be HTTPS).</li>
+                            <li><b>Authentication:</b> choose custom header and paste the Authorization header.</li>
+                            <li>Save — then pick the connector inside a chat (or in Deep Research).</li>
+                        </ol>
+                        <div class="text-muted small mt-1">
+                            Requires a paid ChatGPT plan (Plus/Pro/Business/Enterprise). Configure the
+                            models ChatGPT can search under MCP Server → Settings → Searchable Models.
+                        </div>
+                    </page>
+
+                    <!-- ============ Gemini CLI ============ -->
+                    <page string="✨ Connect Gemini" name="gemini">
+                        <div class="alert alert-info" role="alert">
+                            The <b>Gemini CLI</b> connects to this server over Streamable HTTP. Add the
+                            block below to <code>~/.gemini/settings.json</code>. (The Gemini web/app
+                            does not support remote MCP servers — use the CLI or the Gemini API SDK.)
+                        </div>
+                        <div class="o_mcp_field">
+                            <div class="o_mcp_label">Gemini CLI Config — ready to paste</div>
+                            <field name="gemini_config" widget="mcp_copy" nolabel="1"/>
+                        </div>
+                        <div class="text-muted small mt-1">
+                            Save the file and restart Gemini CLI. Run <code>/mcp</code> inside the CLI
+                            to confirm the <b>odoo-mcp</b> server is connected.
                         </div>
                     </page>
                 </notebook>

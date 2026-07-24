@@ -83,6 +83,17 @@ class McpToken(models.Model):
     last_ip = fields.Char(
         string='Last IP', readonly=True, copy=False,
         help="Client IP address recorded on the most recent use of this token.")
+    client_name = fields.Char(
+        string='Connected Client', readonly=True, copy=False,
+        help="Name of the AI client reported during the last MCP handshake "
+             "(e.g. 'claude-ai', 'Claude Desktop', 'Cursor'). Note: this is the "
+             "client application's own identity — the custom connector label you "
+             "type inside claude.ai is not transmitted over MCP, so name this "
+             "token to match your connector for a clear mapping.")
+    client_version = fields.Char(
+        string='Client Version', readonly=True, copy=False,
+        help="Version string of the AI client reported during the last MCP "
+             "handshake.")
     log_ids = fields.One2many(
         'mcp.log', 'token_id', string='Audit Logs',
         help="Full history of MCP calls performed with this token.")
@@ -119,7 +130,8 @@ class McpToken(models.Model):
              "shown once when you generate the token.")
 
     def _compute_endpoint_url(self):
-        base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
+        # base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
+        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
         for rec in self:
             rec.endpoint_url = base + '/mcp'
 
@@ -242,7 +254,7 @@ class McpToken(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Audit Logs'),
             'res_model': 'mcp.log',
-            'view_mode': 'list,form',
+            'view_mode': 'tree,form',
             'domain': [('token_id', '=', self.id)],
             'context': {'default_token_id': self.id},
         }
@@ -307,13 +319,26 @@ class McpToken(models.Model):
             'last_ip': client_ip or self.last_ip,
         })
 
-    def _touch(self, client_ip=None):
+    def _touch(self, client_ip=None, client_info=None):
         """Record connection-level activity (handshake, tools listing, ping)
         without counting it as a billable tool call. This keeps the live
         Connection Status accurate the moment a client connects, not only when
-        it first invokes a tool."""
+        it first invokes a tool.
+
+        ``client_info`` is the MCP ``clientInfo`` object sent in the initialize
+        handshake ({'name': ..., 'version': ...}); when present we persist the
+        connecting client's reported identity so it can be shown on the token.
+        """
         self.ensure_one()
-        self.sudo().write({
+        vals = {
             'last_used': fields.Datetime.now(),
             'last_ip': client_ip or self.last_ip,
-        })
+        }
+        if client_info:
+            name = client_info.get('name')
+            version = client_info.get('version')
+            if name:
+                vals['client_name'] = name
+            if version:
+                vals['client_version'] = version
+        self.sudo().write(vals)

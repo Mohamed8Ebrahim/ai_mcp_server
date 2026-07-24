@@ -28,6 +28,10 @@ class McpTokenReveal(models.TransientModel):
         help="Ready-to-paste MCP client configuration (via the mcp-remote bridge) with "
              "your endpoint and token already filled in — works with Claude Desktop, "
              "Cursor and any other MCP-compatible AI tool.")
+    gemini_config = fields.Text(
+        string='Gemini CLI Config', compute='_compute_urls',
+        help="Ready-to-paste block for ~/.gemini/settings.json so Gemini CLI connects "
+             "to this server over Streamable HTTP with the token as a header.")
 
     @api.depends('raw_token')
     def _compute_urls(self):
@@ -47,6 +51,18 @@ class McpTokenReveal(models.TransientModel):
                 '        "%s",\n'
                 '        "--header", "Authorization: Bearer %s"\n'
                 '      ]\n'
+                '    }\n'
+                '  }\n'
+                '}'
+            ) % (rec.endpoint_url, token)
+            rec.gemini_config = (
+                '{\n'
+                '  "mcpServers": {\n'
+                '    "odoo-mcp": {\n'
+                '      "httpUrl": "%s",\n'
+                '      "headers": {\n'
+                '        "Authorization": "Bearer %s"\n'
+                '      }\n'
                 '    }\n'
                 '  }\n'
                 '}'
