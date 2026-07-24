@@ -212,6 +212,39 @@ class McpToolExecutor(models.AbstractModel):
                     'required': ['model', 'method'],
                 },
             },
+            # ----------------------------------------------------------------
+            # OpenAI-compatible tools. ChatGPT connectors / Deep Research ONLY
+            # invoke tools named exactly `search` and `fetch`, each taking a
+            # single string argument and returning a JSON-stringified payload.
+            # Keeping this contract lets ChatGPT read Odoo without any bridge.
+            # ----------------------------------------------------------------
+            {
+                'name': 'search', 'scope': 'read',
+                'description': "Search Odoo records by keyword across the configured business "
+                               "models and return matches as {id, title, url}. This is the "
+                               "entry point used by ChatGPT connectors and deep research.",
+                'inputSchema': {
+                    'type': 'object',
+                    'properties': {
+                        'query': {'type': 'string', 'description': "Free-text search query."},
+                    },
+                    'required': ['query'],
+                },
+            },
+            {
+                'name': 'fetch', 'scope': 'read',
+                'description': "Fetch the full content of a single record previously returned by "
+                               "search, identified by its 'model:id' string. Returns the record's "
+                               "fields as readable text plus a link back to Odoo.",
+                'inputSchema': {
+                    'type': 'object',
+                    'properties': {
+                        'id': {'type': 'string',
+                               'description': "Record identifier 'model:id' taken from a search result."},
+                    },
+                    'required': ['id'],
+                },
+            },
         ]
 
     @api.model
@@ -243,9 +276,16 @@ class McpToolExecutor(models.AbstractModel):
         if model_name:
             token._check_model_allowed(model_name)
 
-        handler = getattr(self, '_tool_%s' % tool_name[len('odoo_'):], None)
+        # Map the public tool name to its handler. Native tools are prefixed
+        # `odoo_`; the OpenAI-compatible `search`/`fetch` tools are not.
+        handler_key = tool_name[len('odoo_'):] if tool_name.startswith('odoo_') else tool_name
+        handler = getattr(self, '_tool_%s' % handler_key, None)
         if not handler:
             raise UserError(_("Tool '%s' has no implementation.") % tool_name)
+        # search/fetch need the token to honour its per-model allow-list, since
+        # they resolve the target model(s) themselves rather than via a `model` arg.
+        if tool_name in ('search', 'fetch'):
+            return handler(arguments, token)
         return handler(arguments)
 
     # ------------------------------------------------------------------
@@ -263,6 +303,96 @@ class McpToolExecutor(models.AbstractModel):
             return max(1, int(val))
         except (TypeError, ValueError):
             return 200
+
+    def _record_url(self, model_name, rec_id):
+        """Deep link that opens the record's form view in the Odoo web client."""
+        base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
+        return '%s/web#id=%s&model=%s&view_type=form' % (base, rec_id, model_name)
+
+    def _searchable_models(self, token=None):
+        """Resolve which models the ChatGPT-style `search` tool scans.
+
+        If the token is restricted to specific models, only those are searched;
+        otherwise a configurable default list is used. Every candidate is kept
+        only if it exists and the acting user may read it.
+        """
+        if token and token.model_ids:
+            names = token.model_ids.mapped('model')
+        else:
+            raw = self.env['ir.config_parameter'].sudo().get_param(
+                'm7_mcp_ai_connector.search_models',
+                'res.partner,product.template,product.product,sale.order,'
+                'purchase.order,crm.lead,account.move,project.task,stock.picking')
+            names = [n.strip() for n in (raw or '').split(',') if n.strip()]
+        allowed = []
+        for name in names:
+            if name in self.env:
+                model = self.env[name]
+                if not model._transient and model.check_access_rights('read', raise_exception=False):
+                    allowed.append(name)
+        return allowed
+
+    # ------------------------------------------------------------------
+    # OpenAI-compatible tools (ChatGPT connectors / deep research)
+    # ------------------------------------------------------------------
+    def _tool_search(self, args, token):
+        """Keyword search across the configured models. Returns the OpenAI
+        connector shape: {'results': [{'id': 'model:id', 'title', 'url'}, ...]}."""
+        query = (args.get('query') or '').strip()
+        cap = self._max_records()
+        models = self._searchable_models(token)
+        results = []
+        if query and models:
+            per_model = max(1, cap // len(models))
+            for name in models:
+                model = self.env[name]
+                try:
+                    matches = model.name_search(name=query, limit=per_model)
+                except Exception:  # noqa: BLE001 - skip models that reject name_search
+                    continue
+                for rec_id, display in matches:
+                    results.append({
+                        'id': '%s:%s' % (name, rec_id),
+                        'title': display,
+                        'url': self._record_url(name, rec_id),
+                    })
+                    if len(results) >= cap:
+                        break
+                if len(results) >= cap:
+                    break
+        return {'results': results}
+
+    def _tool_fetch(self, args, token):
+        """Return the full content of one record addressed as 'model:id',
+        in the OpenAI connector shape: {'id', 'title', 'text', 'url', 'metadata'}."""
+        raw = (args.get('id') or '').strip()
+        model_name, sep, rec_str = raw.rpartition(':')
+        if not sep or not model_name:
+            raise UserError(_("Invalid id '%s'. Expected 'model:id'.") % raw)
+        try:
+            rec_id = int(rec_str)
+        except (TypeError, ValueError):
+            raise UserError(_("Invalid record id in '%s'.") % raw)
+        token._check_model_allowed(model_name)
+        model = self._get_model(model_name)
+        record = model.browse(rec_id).exists()
+        if not record:
+            raise UserError(_("Record '%s' was not found.") % raw)
+        values = record.read()[0]
+        labels = model.fields_get(allfields=list(values.keys()), attributes=['string'])
+        lines = []
+        for fname, value in values.items():
+            if fname == 'id' or value in (False, None, '', [], ()):
+                continue
+            label = labels.get(fname, {}).get('string') or fname
+            lines.append('%s: %s' % (label, value))
+        return {
+            'id': raw,
+            'title': record.display_name,
+            'text': '\n'.join(lines),
+            'url': self._record_url(model_name, rec_id),
+            'metadata': {'model': model_name, 'record_id': rec_id},
+        }
 
     # ------------------------------------------------------------------
     # Tool implementations

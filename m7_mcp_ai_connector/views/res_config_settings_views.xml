@@ -31,6 +31,12 @@
                             <field name="mcp_log_retention_days"/>
                         </setting>
                     </block>
+                    <block title="ChatGPT Compatibility" name="mcp_chatgpt_block">
+                        <setting string="Searchable Models"
+                                 help="Models scanned by the ChatGPT 'search' tool (comma-separated). A token restricted to specific models overrides this.">
+                            <field name="mcp_search_models" placeholder="res.partner,sale.order,crm.lead,..."/>
+                        </setting>
+                    </block>
                 </app>
             </xpath>
         </field>
