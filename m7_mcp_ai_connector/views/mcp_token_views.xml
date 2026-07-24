@@ -15,6 +15,7 @@
                        decoration-danger="connection_state in ('expired', 'revoked')"
                        decoration-muted="connection_state in ('draft', 'disabled')"/>
                 <field name="scope"/>
+                <field name="client_name" optional="show"/>
                 <field name="token_preview"/>
                 <field name="call_count"/>
                 <field name="last_used"/>
@@ -138,6 +139,8 @@
                                 </group>
                                 <group>
                                     <field name="last_ip"/>
+                                    <field name="client_name"/>
+                                    <field name="client_version"/>
                                 </group>
                             </group>
                         </page>

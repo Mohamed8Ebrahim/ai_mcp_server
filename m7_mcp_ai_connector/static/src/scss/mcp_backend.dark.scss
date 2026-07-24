@@ -1,0 +1,52 @@
+// =====================================================================
+//  Odoo MCP Server — DARK MODE overrides ONLY.
+//
+//  This file is loaded exclusively in the `web.assets_web_dark` bundle
+//  (see __manifest__.py). It NEVER affects the light theme: the light
+//  bundle does not include it, so mcp_backend.scss stays pixel-identical
+//  in light mode.
+//
+//  In this bundle Odoo's primary variables ($o-main-text-color, $o-gray-*,
+//  $o-view-background-color) already hold their DARK values, so we simply
+//  repaint the few places where mcp_backend.scss hard-codes light-only
+//  text/surface colours that would otherwise be unreadable on a dark
+//  background. Brand blues/teals for gradients & borders are left intact.
+// =====================================================================
+
+.o_mcp_form,
+.o_mcp_list,
+.o_mcp_wizard {
+    // Adaptive surfaces/borders for this bundle only.
+    --mcp-bg: #{$o-gray-200};
+    --mcp-border: #{$o-gray-300};
+}
+
+.o_mcp_form {
+    // Record title, section headers, field labels → readable body text.
+    .oe_title h1 .o_input      { color: #{$o-main-text-color}; }
+    .o_horizontal_separator    { color: #{$o-main-text-color} !important; }
+    .o_mcp_label               { color: #{$o-main-text-color}; }
+
+    // Inline helper text → muted but legible.
+    .text-muted.small          { color: #{$o-main-color-muted} !important; }
+
+    // Notebook tabs.
+    .o_notebook .nav-tabs .nav-link {
+        color: #{$o-main-color-muted};
+        &.active { color: #{$o-main-text-color}; }
+    }
+
+    // Alerts: keep the subtle tinted background, make the message readable.
+    .alert-info    { color: #{$o-main-text-color}; }
+    .alert-warning { color: #{$o-main-text-color}; }
+    .alert-light   { color: #{$o-main-text-color}; }
+    .alert b, .alert strong, .alert code { color: inherit; }
+
+    // Autocomplete dropdown must sit on a solid dark surface, not white.
+    .o-autocomplete--dropdown-menu { background-color: #{$o-view-background-color}; }
+}
+
+.o_mcp_list {
+    // List column headers.
+    thead th { color: #{$o-main-text-color} !important; }
+}

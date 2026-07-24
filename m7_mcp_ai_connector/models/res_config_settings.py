@@ -23,11 +23,20 @@ class ResConfigSettings(models.TransientModel):
         config_parameter='m7_mcp_ai_connector.max_records', default=200,
         help="Hard cap on the number of records any single read tool may return, "
              "protecting the server from oversized responses.")
+    mcp_search_models = fields.Char(
+        string='ChatGPT Searchable Models',
+        config_parameter='m7_mcp_ai_connector.search_models',
+        default='res.partner,product.template,product.product,sale.order,'
+                'purchase.order,crm.lead,account.move,project.task,stock.picking',
+        help="Comma-separated technical model names scanned by the ChatGPT-compatible "
+             "'search' tool. A token restricted to specific models overrides this list "
+             "with its own allowed models.")
     mcp_endpoint_url = fields.Char(
         string='Endpoint URL', compute='_compute_endpoint_url',
         help="The MCP endpoint URL to configure inside your AI client.")
 
     def _compute_endpoint_url(self):
-        base = self.env['ir.config_parameter'].sudo().get_param('web.base.url', '')
+        # base = self.env['ir.config_parameter'].sudo().get_param('web.base.url', '')
+        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
         for rec in self:
             rec.mcp_endpoint_url = (base or '').rstrip('/') + '/mcp'

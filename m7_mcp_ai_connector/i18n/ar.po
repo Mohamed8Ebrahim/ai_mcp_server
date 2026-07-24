@@ -1257,8 +1257,8 @@ msgstr "🔒 القيود"
 
 #. module: m7_mcp_ai_connector
 #: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
-msgid "🖥️ Connect a Desktop AI Tool"
-msgstr "🖥️ الاتصال بأداة ذكاء اصطناعي على سطح المكتب"
+msgid "🖥️ Connect a Desktop AI Tool and Cursor"
+msgstr "🖥️ الاتصال بأداة ذكاء اصطناعي على سطح المكتب و Cursor"
 
 #, python-format
 #~ msgid "MCP Server Active"
@@ -1267,3 +1267,168 @@ msgstr "🖥️ الاتصال بأداة ذكاء اصطناعي على سطح 
 #, python-format
 #~ msgid "This MCP endpoint is live and accepting authenticated requests."
 #~ msgstr "نقطة نهاية MCP هذه فعّالة وتقبل الطلبات المُصادَق عليها."
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__client_name
+msgid "Connected Client"
+msgstr "العميل المتصل"
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__client_name
+msgid "Name of the AI client reported during the last MCP handshake (e.g. 'claude-ai', 'Claude Desktop', 'Cursor'). Note: this is the client application's own identity — the custom connector label you type inside claude.ai is not transmitted over MCP, so name this token to match your connector for a clear mapping."
+msgstr "اسم عميل الذكاء الاصطناعي المُبلَّغ عنه أثناء آخر مصافحة MCP (مثل 'claude-ai' أو 'Claude Desktop' أو 'Cursor'). ملاحظة: هذه هوية تطبيق العميل نفسه — أمّا اسم الموصّل المخصّص الذي تكتبه داخل claude.ai فلا يُرسَل عبر MCP، لذا سمِّ هذا التوكن بنفس اسم موصّلك للحصول على ربط واضح."
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token__client_version
+msgid "Client Version"
+msgstr "نسخة العميل"
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token__client_version
+msgid "Version string of the AI client reported during the last MCP handshake."
+msgstr "نص نسخة عميل الذكاء الاصطناعي المُبلَّغ عنه أثناء آخر مصافحة MCP."
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_res_config_settings__mcp_search_models
+msgid "ChatGPT Searchable Models"
+msgstr "موديلات ChatGPT القابلة للبحث"
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_res_config_settings__mcp_search_models
+msgid "Comma-separated technical model names scanned by the ChatGPT-compatible 'search' tool. A token restricted to specific models overrides this list with its own allowed models."
+msgstr "أسماء الموديلات التقنية مفصولة بفواصل، تفحصها أداة 'search' المتوافقة مع ChatGPT. التوكن المقيَّد بموديلات معيّنة يتجاوز هذه القائمة بموديلاته المسموح بها."
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,field_description:m7_mcp_ai_connector.field_mcp_token_reveal__gemini_config
+msgid "Gemini CLI Config"
+msgstr "إعداد Gemini CLI"
+
+#. module: m7_mcp_ai_connector
+#: model:ir.model.fields,help:m7_mcp_ai_connector.field_mcp_token_reveal__gemini_config
+msgid "Ready-to-paste block for ~/.gemini/settings.json so Gemini CLI connects to this server over Streamable HTTP with the token as a header."
+msgstr "بلوك جاهز للصق في ~/.gemini/settings.json ليتّصل Gemini CLI بهذا الخادم عبر Streamable HTTP مع التوكن كترويسة."
+
+#. module: m7_mcp_ai_connector
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Invalid id '%s'. Expected 'model:id'."
+msgstr "مُعرّف غير صالح '%s'. المتوقّع 'model:id'."
+
+#. module: m7_mcp_ai_connector
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Invalid record id in '%s'."
+msgstr "مُعرّف سجل غير صالح في '%s'."
+
+#. module: m7_mcp_ai_connector
+#: code:addons/m7_mcp_ai_connector/services/tools.py:0
+#, python-format
+msgid "Record '%s' was not found."
+msgstr "لم يُعثَر على السجل '%s'."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"ChatGPT reaches this server through its <b>Developer Mode</b> custom\n"
+"                            connector, using the base endpoint plus an Authorization header. It only\n"
+"                            uses the <code>search</code> and <code>fetch</code> tools, which this\n"
+"                            server already provides."
+msgstr ""
+"يصل ChatGPT إلى هذا الخادم عبر الموصّل المخصّص في <b>وضع المطوّر (Developer Mode)</b>،\n"
+"                            مستخدماً نقطة النهاية الأساسية مع ترويسة تفويض. وهو يستخدم أداتَي\n"
+"                            <code>search</code> و<code>fetch</code> فقط، وهما متوفّرتان بالفعل\n"
+"                            في هذا الخادم."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "MCP Server URL"
+msgstr "رابط خادم MCP"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Open <b>ChatGPT</b> → <b>Settings</b> → <b>Connectors</b> (Apps)."
+msgstr "افتح <b>ChatGPT</b> ← <b>الإعدادات</b> ← <b>الموصّلات (Connectors/Apps)</b>."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Enable <b>Developer mode</b>, then <b>Add custom connector</b>."
+msgstr "فعّل <b>وضع المطوّر (Developer mode)</b>، ثم <b>أضف موصّلاً مخصّصاً</b>."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "<b>MCP Server URL:</b> paste the URL above (must be HTTPS)."
+msgstr "<b>رابط خادم MCP:</b> الصق الرابط أعلاه (يجب أن يكون HTTPS)."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "<b>Authentication:</b> choose custom header and paste the Authorization header."
+msgstr "<b>المصادقة:</b> اختر ترويسة مخصّصة والصق ترويسة التفويض."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Save — then pick the connector inside a chat (or in Deep Research)."
+msgstr "احفظ — ثم اختر الموصّل داخل محادثة (أو في Deep Research)."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"Requires a paid ChatGPT plan (Plus/Pro/Business/Enterprise). Configure the\n"
+"                            models ChatGPT can search under MCP Server → Settings → Searchable Models."
+msgstr ""
+"يتطلّب خطة ChatGPT مدفوعة (Plus/Pro/Business/Enterprise). اضبط الموديلات التي يمكن\n"
+"                            لـ ChatGPT البحث فيها من MCP Server ← الإعدادات ← الموديلات القابلة للبحث."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "🤖 Connect ChatGPT"
+msgstr "🤖 ربط ChatGPT"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"The <b>Gemini CLI</b> connects to this server over Streamable HTTP. Add the\n"
+"                            block below to <code>~/.gemini/settings.json</code>. (The Gemini web/app\n"
+"                            does not support remote MCP servers — use the CLI or the Gemini API SDK.)"
+msgstr ""
+"يتّصل <b>Gemini CLI</b> بهذا الخادم عبر Streamable HTTP. أضف البلوك أدناه إلى\n"
+"                            <code>~/.gemini/settings.json</code>. (تطبيق/ويب Gemini لا يدعم خوادم MCP\n"
+"                            البعيدة — استخدم الـ CLI أو Gemini API SDK.)"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "Gemini CLI Config — ready to paste"
+msgstr "إعداد Gemini CLI — جاهز للصق"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid ""
+"Save the file and restart Gemini CLI. Run <code>/mcp</code> inside the CLI\n"
+"                            to confirm the <b>odoo-mcp</b> server is connected."
+msgstr ""
+"احفظ الملف وأعد تشغيل Gemini CLI. شغّل <code>/mcp</code> داخل الـ CLI\n"
+"                            للتأكد من اتصال خادم <b>odoo-mcp</b>."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_token_reveal_form
+msgid "✨ Connect Gemini"
+msgstr "✨ ربط Gemini"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "res.partner,sale.order,crm.lead,..."
+msgstr "res.partner,sale.order,crm.lead,..."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Searchable Models"
+msgstr "الموديلات القابلة للبحث"
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "Models scanned by the ChatGPT 'search' tool (comma-separated). A token restricted to specific models overrides this."
+msgstr "الموديلات التي تفحصها أداة 'search' الخاصة بـ ChatGPT (مفصولة بفواصل). التوكن المقيَّد بموديلات معيّنة يتجاوز هذا."
+
+#. module: m7_mcp_ai_connector
+#: model_terms:ir.ui.view,arch_db:m7_mcp_ai_connector.view_mcp_config_settings
+msgid "ChatGPT Compatibility"
+msgstr "التوافق مع ChatGPT"

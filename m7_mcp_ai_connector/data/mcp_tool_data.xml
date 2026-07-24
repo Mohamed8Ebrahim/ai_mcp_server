@@ -89,4 +89,20 @@
         <field name="description">Execute a business method on records (admin scope required).</field>
     </record>
 
+    <record id="tool_search" model="mcp.tool">
+        <field name="sequence">120</field>
+        <field name="name">Search (ChatGPT)</field>
+        <field name="technical_name">search</field>
+        <field name="required_scope">read</field>
+        <field name="description">Keyword search across business models. Required by ChatGPT connectors / deep research.</field>
+    </record>
+
+    <record id="tool_fetch" model="mcp.tool">
+        <field name="sequence">130</field>
+        <field name="name">Fetch (ChatGPT)</field>
+        <field name="technical_name">fetch</field>
+        <field name="required_scope">read</field>
+        <field name="description">Fetch one record's full content by 'model:id'. Required by ChatGPT connectors / deep research.</field>
+    </record>
+
 </odoo>
