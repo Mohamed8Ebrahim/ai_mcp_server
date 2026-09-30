@@ -253,7 +253,7 @@ class McpToken(models.Model):
             'type': 'ir.actions.act_window',
             'name': _('Audit Logs'),
             'res_model': 'mcp.log',
-            'view_mode': 'tree,form',
+            'view_mode': 'list,form',
             'domain': [('token_id', '=', self.id)],
             'context': {'default_token_id': self.id},
         }
