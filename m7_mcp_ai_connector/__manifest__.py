@@ -31,7 +31,7 @@ Business Benefits
     'author': 'M7hm6d',
     'support': '01274021065bk.bk@gmail.com',
     'images': ['static/description/banner.gif'],
-    'price': 65.0,
+    'price': 400.0,
     'currency': 'USD',
     'depends': ['base', 'web', 'mail'],
     'external_dependencies': {'python': []},
