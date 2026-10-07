@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_mcp_log_tree" model="ir.ui.view">
-        <field name="name">mcp.log.tree</field>
+    <record id="view_mcp_log_list" model="ir.ui.view">
+        <field name="name">mcp.log.list</field>
         <field name="model">mcp.log</field>
         <field name="arch" type="xml">
-            <tree class="o_mcp_list" decoration-danger="not success" create="false" edit="false">
+            <tree class="o_mcp_list" decoration-danger="success == False" create="false" edit="false">
                 <field name="create_date"/>
                 <field name="token_id"/>
                 <field name="user_id"/>
@@ -44,7 +44,7 @@
                     <group string="Arguments">
                         <field name="arguments" nolabel="1"/>
                     </group>
-                    <group string="Error" invisible="success">
+                    <group string="Error" attrs="{'invisible': [('success', '=', True)]}">
                         <field name="error_message" nolabel="1"/>
                     </group>
                 </sheet>

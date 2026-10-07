@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 PROTOCOL_VERSION = '2024-11-05'
 SERVER_NAME = 'Odoo MCP Server'
-SERVER_VERSION = '17.0.2.0.0'
+SERVER_VERSION = '13.0.1.0.0'
 
 # JSON-RPC 2.0 standard error codes.
 PARSE_ERROR = -32700

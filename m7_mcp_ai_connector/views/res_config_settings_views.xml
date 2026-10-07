@@ -4,40 +4,89 @@
     <record id="view_mcp_config_settings" model="ir.ui.view">
         <field name="name">mcp.res.config.settings</field>
         <field name="model">res.config.settings</field>
+        <field name="priority" eval="50"/>
         <field name="inherit_id" ref="base.res_config_settings_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//form" position="inside">
-                <app data-string="MCP Server" string="MCP Server" name="m7_mcp_ai_connector"
-                     groups="m7_mcp_ai_connector.group_mcp_admin">
-                    <block title="Model Context Protocol Server"
-                           name="mcp_server_block">
-                        <setting id="mcp_enabled_setting" string="Enable MCP Server"
-                                 help="Turn the /mcp endpoint on or off for the whole database.">
-                            <field name="mcp_server_enabled"/>
-                        </setting>
-                        <setting id="mcp_endpoint_setting" string="Endpoint URL"
-                                 help="Paste this into your AI client connector configuration.">
-                            <field name="mcp_endpoint_url" readonly="1"/>
-                        </setting>
-                    </block>
-                    <block title="Safety &amp; Limits" name="mcp_limits_block">
-                        <setting string="Default Rate Limit" help="Applied to newly created tokens (calls/min).">
-                            <field name="mcp_default_rate_limit"/>
-                        </setting>
-                        <setting string="Max Records Per Call" help="Hard cap on records returned by any read tool.">
-                            <field name="mcp_max_records"/>
-                        </setting>
-                        <setting string="Log Retention (days)" help="Older audit logs can be purged. 0 = keep forever.">
-                            <field name="mcp_log_retention_days"/>
-                        </setting>
-                    </block>
-                    <block title="ChatGPT Compatibility" name="mcp_chatgpt_block">
-                        <setting string="Searchable Models"
-                                 help="Models scanned by the ChatGPT 'search' tool (comma-separated). A token restricted to specific models overrides this.">
-                            <field name="mcp_search_models" placeholder="res.partner,sale.order,crm.lead,..."/>
-                        </setting>
-                    </block>
-                </app>
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="MCP Server" string="MCP Server" data-key="m7_mcp_ai_connector" groups="m7_mcp_ai_connector.group_mcp_admin">
+                    <h2>Model Context Protocol Server</h2>
+                    <div class="row mt16 o_settings_container" name="mcp_server_block">
+                        <div class="col-12 col-lg-6 o_setting_box" id="mcp_enabled_setting">
+                            <div class="o_setting_left_pane">
+                                <field name="mcp_server_enabled"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="mcp_server_enabled" string="Enable MCP Server"/>
+                                <div class="text-muted">
+                                    Turn the /mcp endpoint on or off for the whole database.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box" id="mcp_endpoint_setting">
+                            <div class="o_setting_right_pane">
+                                <label for="mcp_endpoint_url" string="Endpoint URL"/>
+                                <div class="text-muted">
+                                    Paste this into your AI client connector configuration.
+                                </div>
+                                <div class="content-group">
+                                    <field name="mcp_endpoint_url" readonly="1"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Safety &amp; Limits</h2>
+                    <div class="row mt16 o_settings_container" name="mcp_limits_block">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="mcp_default_rate_limit" string="Default Rate Limit"/>
+                                <div class="text-muted">
+                                    Applied to newly created tokens (calls/min).
+                                </div>
+                                <div class="content-group">
+                                    <field name="mcp_default_rate_limit"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="mcp_max_records" string="Max Records Per Call"/>
+                                <div class="text-muted">
+                                    Hard cap on records returned by any read tool.
+                                </div>
+                                <div class="content-group">
+                                    <field name="mcp_max_records"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="mcp_log_retention_days" string="Log Retention (days)"/>
+                                <div class="text-muted">
+                                    Older audit logs can be purged. 0 = keep forever.
+                                </div>
+                                <div class="content-group">
+                                    <field name="mcp_log_retention_days"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>ChatGPT Compatibility</h2>
+                    <div class="row mt16 o_settings_container" name="mcp_chatgpt_block">
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="mcp_search_models" string="Searchable Models"/>
+                                <div class="text-muted">
+                                    Models scanned by the ChatGPT 'search' tool (comma-separated). A token restricted to specific models overrides this.
+                                </div>
+                                <div class="content-group">
+                                    <field name="mcp_search_models" placeholder="res.partner,sale.order,crm.lead,..."/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </xpath>
         </field>
     </record>

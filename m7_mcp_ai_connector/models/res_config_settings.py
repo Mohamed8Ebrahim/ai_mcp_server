@@ -36,7 +36,6 @@ class ResConfigSettings(models.TransientModel):
         help="The MCP endpoint URL to configure inside your AI client.")
 
     def _compute_endpoint_url(self):
-        # base = self.env['ir.config_parameter'].sudo().get_param('web.base.url', '')
-        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
+        base = self.env['ir.config_parameter'].sudo().get_param('web.base.url', '')
         for rec in self:
             rec.mcp_endpoint_url = (base or '').rstrip('/') + '/mcp'

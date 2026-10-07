@@ -130,15 +130,14 @@ class McpToken(models.Model):
              "shown once when you generate the token.")
 
     def _compute_endpoint_url(self):
-        # base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
-        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
+        base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
         for rec in self:
             rec.endpoint_url = base + '/mcp'
 
     def _compute_log_count(self):
-        data = self.env['mcp.log']._read_group(
-            [('token_id', 'in', self.ids)], ['token_id'], ['__count'])
-        mapped = {token.id: count for token, count in data}
+        data = self.env['mcp.log'].read_group(
+            [('token_id', 'in', self.ids)], ['token_id'], ['token_id'])
+        mapped = {d['token_id'][0]: d['token_id_count'] for d in data if d.get('token_id')}
         for rec in self:
             rec.log_count = mapped.get(rec.id, 0)
 

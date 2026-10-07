@@ -7,7 +7,7 @@
         <field name="arch" type="xml">
             <form class="o_mcp_form o_mcp_wizard">
                 <div class="alert alert-warning d-flex align-items-center" role="alert">
-                    <i class="fa fa-exclamation-triangle fa-lg me-2" title="Warning"/>
+                    <i class="fa fa-exclamation-triangle fa-lg mr-2" title="Warning"/>
                     <div>
                         <strong>Copy your secret now.</strong>
                         For security the token is stored only as a hash and

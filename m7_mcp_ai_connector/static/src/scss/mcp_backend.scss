@@ -47,6 +47,10 @@
 // =====================================================================
 .o_mcp_form {
 
+    .o-mail-Chatter {
+        border-top: 1px solid var(--mcp-border);
+    }
+
     .o_form_sheet {
         position: relative;
         border: 1px solid var(--mcp-border);

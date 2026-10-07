@@ -7,6 +7,20 @@ from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
+# Odoo 13 compatibility: ensure /mcp endpoints receive HttpRequest
+# instead of JsonRequest even when Content-Type is application/json.
+_original_get_request = http.Root.get_request
+
+
+def _mcp_get_request(self, httprequest):
+    if httprequest.path.startswith('/mcp'):
+        return http.HttpRequest(httprequest)
+    return _original_get_request(self, httprequest)
+
+
+if http.Root.get_request != _mcp_get_request:
+    http.Root.get_request = _mcp_get_request
+
 CORS_HEADERS = [
     ('Access-Control-Allow-Origin', '*'),
     ('Access-Control-Allow-Methods', 'POST, GET, OPTIONS'),
@@ -24,7 +38,9 @@ class McpController(http.Controller):
     def _json_response(payload, status=200):
         body = json.dumps(payload, default=str, ensure_ascii=False)
         headers = [('Content-Type', 'application/json; charset=utf-8')] + CORS_HEADERS
-        return request.make_response(body, headers=headers, status=status)
+        resp = request.make_response(body, headers=headers)
+        resp.status_code = status
+        return resp
 
     @staticmethod
     def _client_ip():
@@ -93,7 +109,9 @@ class McpController(http.Controller):
 
         # Notifications only → 202 Accepted, no body
         if not responses:
-            return request.make_response('', headers=CORS_HEADERS, status=202)
+            resp = request.make_response('', headers=CORS_HEADERS)
+            resp.status_code = 202
+            return resp
 
         result = responses if is_batch else responses[0]
         return self._json_response(result, status=200)
@@ -104,9 +122,11 @@ class McpController(http.Controller):
     @http.route(['/mcp', '/mcp/<string:path_token>'], type='http', auth='none',
                 methods=['OPTIONS'], csrf=False, save_session=False)
     def mcp_preflight(self, path_token=None, **kw):
-        return request.make_response('', headers=CORS_HEADERS, status=204)
+        resp = request.make_response('', headers=CORS_HEADERS)
+        resp.status_code = 204
+        return resp
 
-    @http.route('/mcp/health', type='http', auth='none', methods=['GET'], csrf=False, save_session=False)
+    @http.route('/mcp/health', type='http', auth='public', methods=['GET'], csrf=False, save_session=False)
     def mcp_health(self, **kw):
         return self._json_response({
             'status': 'ok' if self._server_enabled() else 'disabled',
@@ -115,12 +135,12 @@ class McpController(http.Controller):
             'protocol': '2024-11-05',
         })
 
-    @http.route('/mcp', type='http', auth='none', methods=['POST'], csrf=False, save_session=False)
+    @http.route('/mcp', type='http', auth='public', methods=['POST'], csrf=False, save_session=False)
     def mcp_endpoint(self, **kw):
         """Standard endpoint: token supplied via the Authorization: Bearer header."""
         return self._handle(self._bearer_token())
 
-    @http.route('/mcp/<string:path_token>', type='http', auth='none', methods=['POST'],
+    @http.route('/mcp/<string:path_token>', type='http', auth='public', methods=['POST'],
                 csrf=False, save_session=False)
     def mcp_endpoint_path(self, path_token, **kw):
         """Path-authenticated endpoint for clients that cannot send custom headers

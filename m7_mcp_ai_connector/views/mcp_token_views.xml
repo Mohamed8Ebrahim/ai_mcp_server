@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <record id="view_mcp_token_tree" model="ir.ui.view">
-        <field name="name">mcp.token.tree</field>
+    <record id="view_mcp_token_list" model="ir.ui.view">
+        <field name="name">mcp.token.list</field>
         <field name="model">mcp.token</field>
         <field name="arch" type="xml">
-            <tree class="o_mcp_list" decoration-muted="not active" decoration-danger="is_expired">
+            <tree class="o_mcp_list" decoration-muted="active == False" decoration-danger="is_expired == True">
                 <field name="name"/>
                 <field name="user_id"/>
-                <field name="connection_state" widget="badge"
-                       decoration-success="connection_state == 'active'"
-                       decoration-info="connection_state == 'never'"
-                       decoration-warning="connection_state == 'idle'"
-                       decoration-danger="connection_state in ('expired', 'revoked')"
-                       decoration-muted="connection_state in ('draft', 'disabled')"/>
+                <field name="connection_state"/>
                 <field name="scope"/>
                 <field name="client_name" optional="show"/>
                 <field name="token_preview"/>
@@ -33,13 +28,13 @@
             <form class="o_mcp_form">
                 <header>
                     <button name="action_reveal_token" type="object" string="Generate Token"
-                            class="btn-primary" icon="fa-key" invisible="token_hash"/>
+                            class="btn-primary" icon="fa-key" attrs="{'invisible': [('token_hash', '!=', False)]}"/>
                     <button name="action_regenerate" type="object" string="Regenerate"
                             confirm="This invalidates the current token immediately. Continue?"
-                            icon="fa-refresh" invisible="not token_hash"/>
+                            icon="fa-refresh" attrs="{'invisible': [('token_hash', '=', False)]}"/>
                     <button name="action_revoke" type="object" string="Revoke"
                             confirm="Revoke this token? It will stop working immediately."
-                            invisible="not active" icon="fa-ban"/>
+                            attrs="{'invisible': [('active', '=', False)]}" icon="fa-ban"/>
                     <field name="token_hash" invisible="1"/>
                     <field name="connection_state" invisible="1"/>
                     <widget name="mcp_status_pill"/>
@@ -50,50 +45,61 @@
                             <field name="log_count" widget="statinfo" string="Calls Logged"/>
                         </button>
                     </div>
-                    <widget name="web_ribbon" title="Expired" bg_color="text-bg-danger"
-                            invisible="not is_expired"/>
-                    <widget name="web_ribbon" title="Revoked" bg_color="text-bg-secondary"
-                            invisible="active"/>
+                    <widget name="web_ribbon" title="Expired" bg_color="bg-danger"
+                            attrs="{'invisible': [('is_expired', '=', False)]}"/>
+                    <widget name="web_ribbon" title="Revoked" bg_color="bg-secondary"
+                            attrs="{'invisible': [('active', '=', True)]}"/>
                     <div class="oe_title">
                         <label for="name" string="Token Name"/>
-                        <h1><field name="name" placeholder="e.g. Claude Desktop - Ahmed"/></h1>
+                        <h1>
+                            <field name="name" placeholder="e.g. Claude Desktop - Ahmed"/>
+                        </h1>
                         <div class="text-muted">A label to recognise where this token is used.</div>
                     </div>
 
                     <group>
-                        <!-- ===== Identity &amp; Permissions ===== -->
+                        <!-- ===== Identity & Permissions ===== -->
                         <group string="🔐 Identity &amp; Permissions" name="identity">
                             <label for="user_id"/>
                             <div>
                                 <field name="user_id" class="oe_inline"/>
-                                <div class="text-muted small">Every AI action runs with THIS user's permissions only. Use a limited user for safety.</div>
+                                <div class="text-muted small">Every AI action runs with THIS user's permissions only.
+                                    Use a limited user for safety.
+                                </div>
                             </div>
                             <label for="scope"/>
                             <div>
                                 <field name="scope" class="oe_inline"/>
-                                <div class="text-muted small">Read = query only · Read &amp; Write = create/update/delete · Admin = also run methods.</div>
+                                <div class="text-muted small">Read = query only · Read &amp; Write =
+                                    create/update/delete · Admin = also run methods.
+                                </div>
                             </div>
                             <field name="token_preview" readonly="1"/>
                             <field name="active" invisible="1"/>
                             <field name="is_expired" invisible="1"/>
                         </group>
 
-                        <!-- ===== Lifetime &amp; Limits ===== -->
+                        <!-- ===== Lifetime & Limits ===== -->
                         <group string="⏱️ Lifetime &amp; Limits" name="limits">
                             <label for="expiration_date"/>
                             <div>
                                 <field name="expiration_date" class="oe_inline"/>
-                                <div class="text-muted small">Auto-disables the token after this date. Empty = never expires.</div>
+                                <div class="text-muted small">Auto-disables the token after this date. Empty = never
+                                    expires.
+                                </div>
                             </div>
                             <label for="rate_limit"/>
                             <div>
                                 <field name="rate_limit" class="oe_inline"/>
-                                <div class="text-muted small">Max calls per minute — protects the server from overload. 0 = unlimited.</div>
+                                <div class="text-muted small">Max calls per minute — protects the server from overload.
+                                    0 = unlimited.
+                                </div>
                             </div>
                             <label for="ip_allowlist"/>
                             <div>
                                 <field name="ip_allowlist" class="oe_inline" placeholder="e.g. 1.2.3.4, 5.6.7.8"/>
-                                <div class="text-muted small">Only these IPs may use the token. Empty = any origin.</div>
+                                <div class="text-muted small">Only these IPs may use the token. Empty = any origin.
+                                </div>
                             </div>
                         </group>
                     </group>
@@ -101,7 +107,7 @@
                     <notebook>
                         <page string="🔒 Restrictions" name="restrictions">
                             <div class="alert alert-light border" role="alert">
-                                <i class="fa fa-info-circle me-1" title="Info"/>
+                                <i class="fa fa-info-circle mr-1" title="Info"/>
                                 Leave both lists <b>empty</b> for full access to everything the acting user
                                 can already reach. Add entries only to <b>narrow</b> the token down.
                             </div>
@@ -109,7 +115,9 @@
                                 <label for="model_ids"/>
                                 <div>
                                     <field name="model_ids" widget="many2many_tags" options="{'no_create': True}"/>
-                                    <div class="text-muted small">Restricts the token to ONLY these models. e.g. only sale.order.</div>
+                                    <div class="text-muted small">Restricts the token to ONLY these models. e.g. only
+                                        sale.order.
+                                    </div>
                                 </div>
                                 <label for="tool_ids"/>
                                 <div>
@@ -147,8 +155,8 @@
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids"/>
-                    <field name="message_ids"/>
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
                 </div>
             </form>
         </field>
@@ -181,7 +189,8 @@
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">Create your first MCP access token</p>
             <p>A token lets an AI client such as Claude connect to this database securely.
-               After creating one, click <b>Show Token</b> to copy the secret.</p>
+                After creating one, click <b>Show Token</b> to copy the secret.
+            </p>
         </field>
     </record>
 
