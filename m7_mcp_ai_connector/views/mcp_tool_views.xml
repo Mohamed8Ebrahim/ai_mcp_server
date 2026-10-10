@@ -5,13 +5,17 @@
         <field name="name">mcp.tool.list</field>
         <field name="model">mcp.tool</field>
         <field name="arch" type="xml">
-            <tree class="o_mcp_list" editable="bottom" decoration-muted="active == False">
-                <field name="sequence" widget="handle"/>
-                <field name="name"/>
-                <field name="technical_name"/>
-                <field name="required_scope"/>
-                <field name="description"/>
-                <field name="active" widget="boolean_toggle"/>
+            <tree class="o_mcp_list"
+                  create="false"
+                  delete="false"
+                  editable="bottom"
+                  decoration-muted="enabled == False">
+                <field name="sequence" readonly="1"/>
+                <field name="name" readonly="1"/>
+                <field name="technical_name" readonly="1"/>
+                <field name="required_scope" readonly="1"/>
+                <field name="description" readonly="1"/>
+                <field name="enabled"/>
             </tree>
         </field>
     </record>
@@ -20,24 +24,29 @@
         <field name="name">mcp.tool.form</field>
         <field name="model">mcp.tool</field>
         <field name="arch" type="xml">
-            <form class="o_mcp_form">
+            <form class="o_mcp_form" create="false" delete="false">
                 <sheet>
+                    <div class="alert alert-info" role="alert">
+                        Tools are defined in the module code. You can only toggle
+                        <strong>Enabled</strong> here — create, delete and other
+                        fields are locked.
+                    </div>
                     <div class="oe_title">
-                        <label for="name"/>
-                        <h1><field name="name"/></h1>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name" readonly="1"/></h1>
                     </div>
                     <group>
                         <group>
-                            <field name="technical_name"/>
-                            <field name="required_scope"/>
+                            <field name="technical_name" readonly="1"/>
+                            <field name="required_scope" readonly="1"/>
                         </group>
                         <group>
-                            <field name="sequence"/>
-                            <field name="active"/>
+                            <field name="sequence" readonly="1"/>
+                            <field name="enabled"/>
                         </group>
                     </group>
                     <group string="Description (sent to the AI client)">
-                        <field name="description" nolabel="1"/>
+                        <field name="description" nolabel="1" readonly="1"/>
                     </group>
                 </sheet>
             </form>

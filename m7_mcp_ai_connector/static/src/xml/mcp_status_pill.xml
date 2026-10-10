@@ -10,17 +10,21 @@
     </t>
 
     <t t-name="m7_mcp_ai_connector.McpCopy">
-        <div t-attf-class="#{isBlock ? 'o_mcp_copy o_mcp_copy--block' : 'o_mcp_copy'}">
+        <div t-attf-class="o_mcp_copy #{isBlock ? 'o_mcp_copy--block' : ''}">
             <t t-if="isBlock">
                 <pre class="o_mcp_pre" style="direction:ltr;text-align:left;unicode-bidi:isolate;" t-esc="value"/>
             </t>
-            <t t-elif="isEmpty">
-                <span class="o_mcp_inline o_mcp_inline--empty">—</span>
+            <t t-if="!isBlock">
+                <t t-if="isEmpty">
+                    <span class="o_mcp_inline o_mcp_inline--empty">—</span>
+                </t>
+                <t t-if="!isEmpty">
+                    <span class="o_mcp_inline" style="direction:ltr;text-align:left;unicode-bidi:isolate;" t-esc="value"/>
+                </t>
             </t>
-            <t t-else="">
-                <span class="o_mcp_inline" style="direction:ltr;text-align:left;unicode-bidi:isolate;" t-esc="value"/>
-            </t>
-            <button type="button" class="o_mcp_copy_btn" t-att-disabled="isEmpty ? 'disabled' : undefined" title="Copy to clipboard">
+            <button type="button" class="o_mcp_copy_btn o_clipboard_button"
+                    t-att-disabled="isEmpty ? 'disabled' : undefined"
+                    title="Copy to clipboard">
                 <i class="fa fa-clipboard"/>
                 <span>Copy</span>
             </button>

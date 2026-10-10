@@ -15,7 +15,8 @@ Key Features
 * Native MCP Endpoint: a fully compliant JSON-RPC 2.0 / Streamable-HTTP server built straight into Odoo at /mcp.
 * Personal Access Tokens: credential-free, revocable Bearer tokens with expiry dates, so no user password ever leaves your server.
 * Fine-Grained Governance: per-token scopes (Read / Write / Admin), model allow-lists, IP allow-lists and per-minute rate limiting.
-* Rich Tool-Set: search_read, read, count, name_search, read_group analytics, fields_get, list_models, create, write, unlink and safe method execution.
+* Rich Tool-Set: search_read, read, count, name_search, read_group analytics, fields_get, list_models, create, write, unlink, safe method execution, plus diagnostics (database size, filestore stats, module list, system info).
+* Code-Managed Tools: the Tools screen is read-only except the Enabled toggle; tools are added or changed only from module sources.
 * Human-in-the-Loop Safety: write and delete operations honour Odoo's own access rights and record rules, executed strictly as the token owner.
 * Complete Audit Trail: every MCP call is logged with tool, model, arguments, result size, duration, client IP and success/error state.
 * Zero-Config Discovery: a health endpoint and capabilities handshake make connection setup a copy-paste affair.

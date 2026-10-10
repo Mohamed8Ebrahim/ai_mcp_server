@@ -1,4 +1,5 @@
-from odoo import fields, models
+from odoo import api, fields, models, _
+from odoo.exceptions import UserError
 
 
 class McpTool(models.Model):
@@ -27,12 +28,49 @@ class McpTool(models.Model):
             ('admin', 'Admin'),
         ], string='Required Scope', default='read', required=True,
         help="Minimum token scope needed to invoke this tool.")
-    active = fields.Boolean(
+    # Named `enabled` (not `active`) on purpose: Odoo's `active` field auto-hides
+    # archived rows from search(), which previously let disabled tools keep working.
+    enabled = fields.Boolean(
         string='Enabled', default=True,
         help="Globally enable or disable this tool for every token. Disabled tools "
-             "are hidden from the AI client's tool list.")
+             "are hidden from the AI client's tool list. This is the only field "
+             "editable from the interface.")
 
     _sql_constraints = [
         ('technical_name_uniq', 'unique(technical_name)',
          'The tool technical name must be unique.'),
     ]
+
+    def _is_module_data_load(self):
+        return bool(
+            self.env.context.get('install_module')
+            or self.env.context.get('module')
+        )
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        if not self._is_module_data_load():
+            raise UserError(_(
+                "MCP tools are defined in code and cannot be created from the "
+                "interface. Add them in the module sources and upgrade the app."
+            ))
+        return super().create(vals_list)
+
+    def write(self, vals):
+        if self._is_module_data_load():
+            return super().write(vals)
+        # Only Enabled may be toggled from the UI / RPC.
+        if set(vals) - {'enabled'}:
+            raise UserError(_(
+                "Only the Enabled flag can be changed from the interface. "
+                "Other tool fields are managed in the module code."
+            ))
+        return super().write(vals)
+
+    def unlink(self):
+        if not self._is_module_data_load():
+            raise UserError(_(
+                "MCP tools cannot be deleted from the interface. "
+                "Remove them from the module sources and upgrade the app."
+            ))
+        return super().unlink()
