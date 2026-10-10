@@ -89,6 +89,39 @@
         <field name="description">Execute a business method on records (admin scope required).</field>
     </record>
 
+
+    <record id="tool_db_size" model="mcp.tool">
+        <field name="sequence">140</field>
+        <field name="name">Database Size</field>
+        <field name="technical_name">odoo_db_size</field>
+        <field name="required_scope">admin</field>
+        <field name="description">Return PostgreSQL database size and the largest tables. Admin / system user required.</field>
+    </record>
+
+    <record id="tool_filestore_stats" model="mcp.tool">
+        <field name="sequence">150</field>
+        <field name="name">Filestore Stats</field>
+        <field name="technical_name">odoo_filestore_stats</field>
+        <field name="required_scope">admin</field>
+        <field name="description">Return attachment and filestore storage statistics. Admin / system user required.</field>
+    </record>
+
+    <record id="tool_module_list" model="mcp.tool">
+        <field name="sequence">160</field>
+        <field name="name">Installed Modules</field>
+        <field name="technical_name">odoo_module_list</field>
+        <field name="required_scope">read</field>
+        <field name="description">List installed Odoo modules with name, label and version.</field>
+    </record>
+
+    <record id="tool_system_info" model="mcp.tool">
+        <field name="sequence">170</field>
+        <field name="name">System Info</field>
+        <field name="technical_name">odoo_system_info</field>
+        <field name="required_scope">admin</field>
+        <field name="description">Return database name, Odoo/PostgreSQL versions, company and user counts. Admin / system user required.</field>
+    </record>
+
     <record id="tool_search" model="mcp.tool">
         <field name="sequence">120</field>
         <field name="name">Search (ChatGPT)</field>
