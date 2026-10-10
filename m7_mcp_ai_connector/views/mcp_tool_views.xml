@@ -5,17 +5,17 @@
         <field name="name">mcp.tool.list</field>
         <field name="model">mcp.tool</field>
         <field name="arch" type="xml">
+            <!-- Avoid editable list: Odoo 13 FieldBoolean focus crash (isFocusable). -->
             <tree class="o_mcp_list"
                   create="false"
                   delete="false"
-                  editable="bottom"
                   decoration-muted="enabled == False">
                 <field name="sequence" readonly="1"/>
                 <field name="name" readonly="1"/>
                 <field name="technical_name" readonly="1"/>
                 <field name="required_scope" readonly="1"/>
                 <field name="description" readonly="1"/>
-                <field name="enabled"/>
+                <field name="enabled" widget="boolean_toggle"/>
             </tree>
         </field>
     </record>
