@@ -1,7 +1,10 @@
 import logging
+import os
 
+import odoo
 from odoo import api, models, _
 from odoo.exceptions import UserError
+from odoo.tools import config
 
 _logger = logging.getLogger(__name__)
 
@@ -34,7 +37,11 @@ class McpToolExecutor(models.AbstractModel):
     def get_tool_definitions(self, token=None):
         """Return the JSON-Schema tool definitions filtered by what is enabled
         globally and permitted for the given token."""
-        registry = {t.technical_name: t for t in self.env['mcp.tool'].sudo().search([])}
+        # Always load every registry row — the flag is `enabled`, not Odoo `active`.
+        registry = {
+            t.technical_name: t
+            for t in self.env['mcp.tool'].sudo().search([])
+        }
         allowed_names = None
         if token and token.tool_ids:
             allowed_names = set(token.tool_ids.mapped('technical_name'))
@@ -43,7 +50,8 @@ class McpToolExecutor(models.AbstractModel):
         for spec in self._all_tool_specs():
             name = spec['name']
             reg = registry.get(name)
-            if reg is not None and not reg.active:
+            # Registry row present + disabled → hide from the AI client.
+            if reg is not None and not reg.enabled:
                 continue
             if allowed_names is not None and name not in allowed_names:
                 continue
@@ -212,6 +220,55 @@ class McpToolExecutor(models.AbstractModel):
                     'required': ['model', 'method'],
                 },
             },
+            {
+                'name': 'odoo_db_size', 'scope': 'admin',
+                'description': "Return the PostgreSQL database size (bytes / GB / pretty) and the "
+                               "top tables by total relation size. Use for questions like "
+                               "'how big is the database?' or 'which tables take the most space?'. "
+                               "Requires an admin-scoped token owned by a system administrator.",
+                'inputSchema': {
+                    'type': 'object',
+                    'properties': {
+                        'top_n': {
+                            'type': 'integer',
+                            'description': "How many largest tables to return (default 15, max 50).",
+                        },
+                    },
+                },
+            },
+            {
+                'name': 'odoo_filestore_stats', 'scope': 'admin',
+                'description': "Return attachment / filestore storage statistics: binary attachment "
+                               "count and size, URL attachments, rows still stored in db_datas, "
+                               "and the on-disk filestore directory size when available. "
+                               "Requires an admin-scoped token owned by a system administrator.",
+                'inputSchema': {'type': 'object', 'properties': {}},
+            },
+            {
+                'name': 'odoo_module_list', 'scope': 'read',
+                'description': "List installed Odoo modules (technical name, label, version). "
+                               "Optionally filter by keyword.",
+                'inputSchema': {
+                    'type': 'object',
+                    'properties': {
+                        'filter': {
+                            'type': 'string',
+                            'description': "Optional keyword matched against name or label.",
+                        },
+                        'limit': {
+                            'type': 'integer',
+                            'description': "Maximum modules to return.",
+                        },
+                    },
+                },
+            },
+            {
+                'name': 'odoo_system_info', 'scope': 'admin',
+                'description': "Return high-level instance info: database name, Odoo version, "
+                               "PostgreSQL version, company name, and active user counts. "
+                               "Requires an admin-scoped token owned by a system administrator.",
+                'inputSchema': {'type': 'object', 'properties': {}},
+            },
             # ----------------------------------------------------------------
             # OpenAI-compatible tools. ChatGPT connectors / Deep Research ONLY
             # invoke tools named exactly `search` and `fetch`, each taking a
@@ -266,7 +323,7 @@ class McpToolExecutor(models.AbstractModel):
 
         reg = self.env['mcp.tool'].sudo().search(
             [('technical_name', '=', tool_name)], limit=1)
-        if reg and not reg.active:
+        if reg and not reg.enabled:
             raise UserError(_("Tool '%s' is disabled.") % tool_name)
 
         token._check_scope(spec['scope'])
@@ -491,3 +548,154 @@ class McpToolExecutor(models.AbstractModel):
         if isinstance(result, models.BaseModel):
             result = result.ids
         return {'result': result}
+
+    # ------------------------------------------------------------------
+    # Diagnostics tools (read-only SQL / filesystem introspection)
+    # ------------------------------------------------------------------
+    def _ensure_system_admin(self):
+        if not self.env.user.has_group('base.group_system'):
+            raise UserError(_("Only system administrators can use this tool."))
+
+    @staticmethod
+    def _pretty_bytes(num_bytes):
+        num = float(num_bytes or 0)
+        for unit in ('B', 'KB', 'MB', 'GB', 'TB'):
+            if num < 1024.0 or unit == 'TB':
+                if unit == 'B':
+                    return '%d %s' % (int(num), unit)
+                return '%.2f %s' % (num, unit)
+            num /= 1024.0
+        return '%.2f TB' % num
+
+    def _tool_db_size(self, args):
+        self._ensure_system_admin()
+        top_n = int(args.get('top_n') or 15)
+        top_n = max(1, min(top_n, 50))
+        cr = self.env.cr
+        cr.execute('SELECT current_database(), pg_database_size(current_database())')
+        db_name, total = cr.fetchone()
+        cr.execute("""
+            SELECT c.relname, pg_total_relation_size(c.oid)
+            FROM pg_class c
+            JOIN pg_namespace n ON n.oid = c.relnamespace
+            WHERE n.nspname = 'public' AND c.relkind = 'r'
+            ORDER BY 2 DESC
+            LIMIT %s
+        """, (top_n,))
+        top_tables = [{
+            'table': name,
+            'size_bytes': size,
+            'size_mb': round(size / (1024.0 ** 2), 1),
+            'size_pretty': self._pretty_bytes(size),
+        } for name, size in cr.fetchall()]
+        return {
+            'database': db_name,
+            'db_size_bytes': total,
+            'db_size_gb': round(total / (1024.0 ** 3), 2),
+            'db_size_pretty': self._pretty_bytes(total),
+            'top_tables': top_tables,
+        }
+
+    def _tool_filestore_stats(self, args):
+        self._ensure_system_admin()
+        cr = self.env.cr
+        cr.execute("""
+            SELECT
+                COUNT(*) FILTER (WHERE type = 'binary'),
+                COALESCE(SUM(file_size) FILTER (WHERE type = 'binary'), 0),
+                COUNT(*) FILTER (WHERE type = 'url'),
+                COUNT(*) FILTER (WHERE db_datas IS NOT NULL),
+                COALESCE(SUM(OCTET_LENGTH(db_datas)) FILTER (WHERE db_datas IS NOT NULL), 0)
+            FROM ir_attachment
+        """)
+        binary_count, binary_size, url_count, db_datas_count, db_datas_size = cr.fetchone()
+
+        filestore_path = os.path.join(config['data_dir'], 'filestore', cr.dbname)
+        filestore_bytes = None
+        filestore_exists = os.path.isdir(filestore_path)
+        if filestore_exists:
+            total = 0
+            for root, _dirs, files in os.walk(filestore_path):
+                for fname in files:
+                    try:
+                        total += os.path.getsize(os.path.join(root, fname))
+                    except OSError:
+                        continue
+            filestore_bytes = total
+
+        return {
+            'database': cr.dbname,
+            'binary_attachments': {
+                'count': binary_count,
+                'size_bytes': binary_size,
+                'size_pretty': self._pretty_bytes(binary_size),
+            },
+            'url_attachments': {'count': url_count},
+            'db_datas': {
+                'count': db_datas_count,
+                'size_bytes': db_datas_size,
+                'size_pretty': self._pretty_bytes(db_datas_size),
+            },
+            'filestore': {
+                'path': filestore_path,
+                'exists': filestore_exists,
+                'size_bytes': filestore_bytes,
+                'size_pretty': (
+                    self._pretty_bytes(filestore_bytes) if filestore_bytes is not None else None
+                ),
+            },
+            'note': (
+                "file_size on ir.attachment is usually the filestore footprint; "
+                "PostgreSQL size from odoo_db_size is separate unless attachments use db_datas."
+            ),
+        }
+
+    def _tool_module_list(self, args):
+        domain = [('state', '=', 'installed')]
+        keyword = (args.get('filter') or '').strip()
+        if keyword:
+            domain += ['|', ('name', 'ilike', keyword), ('shortdesc', 'ilike', keyword)]
+        cap = self._max_records()
+        limit = min(int(args.get('limit') or cap), cap)
+        modules = self.env['ir.module.module'].sudo().search_read(
+            domain,
+            ['name', 'shortdesc', 'latest_version', 'author'],
+            limit=limit,
+            order='name',
+        )
+        return {
+            'count': len(modules),
+            'modules': [{
+                'name': m['name'],
+                'label': m['shortdesc'],
+                'version': m['latest_version'],
+                'author': m['author'],
+            } for m in modules],
+        }
+
+    def _tool_system_info(self, args):
+        self._ensure_system_admin()
+        cr = self.env.cr
+        cr.execute('SELECT version()')
+        pg_version = cr.fetchone()[0]
+        company = self.env.company
+        users = self.env['res.users'].sudo()
+        return {
+            'database': cr.dbname,
+            'odoo_version': odoo.release.version,
+            'odoo_series': odoo.release.series,
+            'postgres_version': pg_version,
+            'company': company.name,
+            'base_url': self.env['ir.config_parameter'].sudo().get_param('web.base.url', ''),
+            'users': {
+                'total': users.search_count([('active', '=', True)]),
+                'internal': users.search_count([
+                    ('active', '=', True),
+                    ('share', '=', False),
+                ]),
+                'portal': users.search_count([
+                    ('active', '=', True),
+                    ('share', '=', True),
+                ]),
+            },
+        }
