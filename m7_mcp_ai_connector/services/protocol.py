@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 PROTOCOL_VERSION = '2024-11-05'
 SERVER_NAME = 'Odoo MCP Server'
-SERVER_VERSION = '13.0.1.0.0'
+SERVER_VERSION = '13.0.1.2.0'
 
 # JSON-RPC 2.0 standard error codes.
 PARSE_ERROR = -32700
@@ -98,7 +98,9 @@ class McpProtocol(models.AbstractModel):
                 "This server exposes an Odoo ERP database. Use odoo_list_models and "
                 "odoo_fields_get to discover schema, odoo_search_read / odoo_read_group "
                 "to query and analyze, and the write tools only when explicitly asked. "
-                "All actions are audited and constrained by the access token's scope."
+                "All actions are audited and constrained by the access token's scope. "
+                "Privacy: do not return module source code (.py files or addon "
+                "filesystem contents). All other database operations remain available."
             ),
         }
 
