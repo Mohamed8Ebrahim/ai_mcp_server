@@ -43,14 +43,38 @@ class McpController(http.Controller):
         return request.httprequest.headers.get('X-Api-Key', '').strip() or None
 
     def _server_enabled(self):
+        if not request.env:
+            return False
         param = request.env['ir.config_parameter'].sudo().get_param(
             'm7_mcp_ai_connector.enabled', 'True')
         return str(param).lower() not in ('false', '0', '')
+
+    def _require_db(self):
+        """Return a JSON 404 when multi-db routing failed to bind a database."""
+        if request.db and request.env:
+            return None
+        return self._json_response(
+            {'jsonrpc': '2.0', 'id': None,
+             'error': {
+                 'code': -32001,
+                 'message': (
+                     'Could not resolve an Odoo database for this MCP request. '
+                     'Use the connector URL that embeds the token '
+                     '(/mcp/<db>/<token> or /mcp/<token>), and ensure '
+                     'm7_mcp_ai_connector is listed in server_wide_modules.'
+                 ),
+             }},
+            status=404,
+        )
 
     # ------------------------------------------------------------------
     # Shared request handler
     # ------------------------------------------------------------------
     def _handle(self, raw_token):
+        db_error = self._require_db()
+        if db_error:
+            return db_error
+
         # 1. Master switch
         if not self._server_enabled():
             return self._json_response(
@@ -98,22 +122,57 @@ class McpController(http.Controller):
         result = responses if is_batch else responses[0]
         return self._json_response(result, status=200)
 
-    # ------------------------------------------------------------------
-    # Endpoints
-    # ------------------------------------------------------------------
-    @http.route(['/mcp', '/mcp/<string:path_token>'], type='http', auth='none',
-                methods=['OPTIONS'], csrf=False, save_session=False)
-    def mcp_preflight(self, path_token=None, **kw):
-        return request.make_response('', headers=CORS_HEADERS, status=204)
-
-    @http.route('/mcp/health', type='http', auth='none', methods=['GET'], csrf=False, save_session=False)
-    def mcp_health(self, **kw):
+    def _probe_response(self, path_token=None):
+        """Lightweight GET handler for connector discovery (claude.ai, etc.)."""
+        db_error = self._require_db()
+        if db_error:
+            return db_error
         return self._json_response({
             'status': 'ok' if self._server_enabled() else 'disabled',
             'server': 'Odoo MCP Server',
             'transport': 'streamable-http',
             'protocol': '2024-11-05',
+            'database': request.db,
+            'auth': 'path' if path_token else 'bearer',
         })
+
+    # ------------------------------------------------------------------
+    # Endpoints
+    # ------------------------------------------------------------------
+    @http.route(
+        ['/mcp', '/mcp/<string:path_token>', '/mcp/<string:db_name>/<string:path_token>'],
+        type='http', auth='none', methods=['OPTIONS'], csrf=False, save_session=False,
+    )
+    def mcp_preflight(self, path_token=None, db_name=None, **kw):
+        return request.make_response('', headers=CORS_HEADERS, status=204)
+
+    @http.route('/mcp/health', type='http', auth='none', methods=['GET'], csrf=False, save_session=False)
+    def mcp_health(self, **kw):
+        db_error = self._require_db()
+        if db_error:
+            # Allow anonymous health when a single DB is pinned / selected.
+            return self._json_response({
+                'status': 'unbound',
+                'server': 'Odoo MCP Server',
+                'transport': 'streamable-http',
+                'protocol': '2024-11-05',
+                'hint': 'Pass ?db=<database> when several databases are hosted on this URL.',
+            }, status=200)
+        return self._json_response({
+            'status': 'ok' if self._server_enabled() else 'disabled',
+            'server': 'Odoo MCP Server',
+            'transport': 'streamable-http',
+            'protocol': '2024-11-05',
+            'database': request.db,
+        })
+
+    @http.route(
+        ['/mcp', '/mcp/<string:path_token>', '/mcp/<string:db_name>/<string:path_token>'],
+        type='http', auth='none', methods=['GET'], csrf=False, save_session=False,
+    )
+    def mcp_endpoint_get(self, path_token=None, db_name=None, **kw):
+        """Discovery / SSE probe. Claude.ai hits GET before POST."""
+        return self._probe_response(path_token)
 
     @http.route('/mcp', type='http', auth='none', methods=['POST'], csrf=False, save_session=False)
     def mcp_endpoint(self, **kw):
@@ -126,4 +185,14 @@ class McpController(http.Controller):
         """Path-authenticated endpoint for clients that cannot send custom headers
         (e.g. the claude.ai web custom-connector UI). The full secret token is the
         last URL segment, so the capability URL alone grants access."""
+        return self._handle(path_token)
+
+    @http.route('/mcp/<string:db_name>/<string:path_token>', type='http', auth='none',
+                methods=['POST'], csrf=False, save_session=False)
+    def mcp_endpoint_db_path(self, db_name, path_token, **kw):
+        """Multi-database connector URL: ``/mcp/<db_name>/<token>``.
+
+        The db segment lets Odoo bind the correct registry before auth; the
+        token is still verified inside that database.
+        """
         return self._handle(path_token)

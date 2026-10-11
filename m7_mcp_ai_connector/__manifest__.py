@@ -1,6 +1,7 @@
 {
     'name': 'AI MCP Server — AI Connector for Odoo',
-    'version': '19.0.2.0.0',
+    'version': '19.0.2.1.0',
+    'post_load': 'post_load',
     'category': 'Tools/Productivity',
     'summary': 'Turn Odoo into a secure Model Context Protocol (MCP) server so Claude, ChatGPT, Gemini and other AI assistants can safely read, analyze and update your database.',
     'description': """
