@@ -33,14 +33,23 @@ class McpTokenReveal(models.TransientModel):
         help="Ready-to-paste block for ~/.gemini/settings.json so Gemini CLI connects "
              "to this server over Streamable HTTP with the token as a header.")
 
+    def _public_base_url(self):
+        ICP = self.env['ir.config_parameter'].sudo()
+        # Prefer an explicit public/tunnel URL; do not fall back to web.base.url
+        # (often http://localhost) because AI connectors need a reachable host.
+        base = (ICP.get_param('m7_mcp_ai_connector.public_base_url')
+                or 'https://kamron-heroic-dorie.ngrok-free.dev')
+        return base.rstrip('/')
+
     @api.depends('raw_token')
     def _compute_urls(self):
-        # base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
-        base = 'https://kamron-heroic-dorie.ngrok-free.dev'
+        base = self._public_base_url()
+        dbname = self.env.cr.dbname
         for rec in self:
             token = rec.raw_token or ''
-            rec.endpoint_url = base + '/mcp'
-            rec.connector_url = '%s/mcp/%s' % (base, token)
+            # Include db name so multi-database hosts resolve without db_name in odoo.conf.
+            rec.endpoint_url = '%s/mcp?db=%s' % (base, dbname)
+            rec.connector_url = '%s/mcp/%s/%s' % (base, dbname, token)
             rec.header_value = 'Bearer %s' % token
             rec.client_config = (
                 '{\n'
