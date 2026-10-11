@@ -16,6 +16,7 @@ BLOCKED_METHODS = {
     'load', 'export_data', 'check_access_rights', 'sudo', 'with_user',
     'with_context', 'with_env', '__init__', 'pool', 'env', '_cr',
     'execute_kw', 'search_fetch', 'fields_get',
+    'get_module_info', 'get_module_path',
 }
 
 
@@ -353,6 +354,48 @@ class McpToolExecutor(models.AbstractModel):
             raise UserError(_("Model '%s' does not exist.") % model_name)
         return self.env[model_name]
 
+    # ------------------------------------------------------------------
+    # Source-code privacy (minimal): block addon/.py source only.
+    # All other tools and models keep full normal behaviour.
+    # ------------------------------------------------------------------
+    @api.model
+    def _is_source_code_attachment(self, values):
+        name = ((values or {}).get('name') or (values or {}).get('display_name') or '').lower()
+        return name.endswith(('.py', '.pyc', '.pyo'))
+
+    @api.model
+    def _strip_source_code(self, records, model_name=None):
+        """Remove addon filesystem pointers and .py attachment payloads."""
+        if not records:
+            return records
+        cleaned = []
+        for rec in records:
+            if not isinstance(rec, dict):
+                cleaned.append(rec)
+                continue
+            row = dict(rec)
+            row.pop('arch_fs', None)
+            if model_name == 'ir.attachment' and self._is_source_code_attachment(row):
+                for key in ('datas', 'raw', 'db_datas', 'store_fname'):
+                    row.pop(key, None)
+                row['privacy'] = _(
+                    "Privacy: module source code is not available through MCP.")
+            cleaned.append(row)
+        return cleaned
+
+    @api.model
+    def _reject_source_code_values(self, values, model_name=None):
+        if not values:
+            return values
+        if 'arch_fs' in values:
+            raise UserError(_(
+                "Privacy: module source code is not available through MCP."))
+        if model_name == 'ir.attachment' and self._is_source_code_attachment(values):
+            if set(values) & {'datas', 'raw', 'db_datas', 'store_fname'}:
+                raise UserError(_(
+                    "Privacy: module source code is not available through MCP."))
+        return values
+
     def _max_records(self):
         val = self.env['ir.config_parameter'].sudo().get_param(
             'm7_mcp_ai_connector.max_records', '200')
@@ -435,14 +478,16 @@ class McpToolExecutor(models.AbstractModel):
         record = model.browse(rec_id).exists()
         if not record:
             raise UserError(_("Record '%s' was not found.") % raw)
-        values = record.read()[0]
+        values = self._strip_source_code(record.read(), model_name=model_name)[0]
         labels = model.fields_get(allfields=list(values.keys()), attributes=['string'])
         lines = []
         for fname, value in values.items():
-            if fname == 'id' or value in (False, None, '', [], ()):
+            if fname in ('id', 'privacy') or value in (False, None, '', [], ()):
                 continue
             label = labels.get(fname, {}).get('string') or fname
             lines.append('%s: %s' % (label, value))
+        if values.get('privacy'):
+            lines.append(str(values['privacy']))
         return {
             'id': raw,
             'title': record.display_name,
@@ -455,21 +500,31 @@ class McpToolExecutor(models.AbstractModel):
     # Tool implementations
     # ------------------------------------------------------------------
     def _tool_search_read(self, args):
-        model = self._get_model(args['model'])
+        model_name = args['model']
+        model = self._get_model(model_name)
         cap = self._max_records()
         limit = min(int(args.get('limit') or cap), cap)
+        fields = args.get('fields') or None
+        if fields:
+            fields = [f for f in fields if f != 'arch_fs']
         records = model.search_read(
             domain=args.get('domain') or [],
-            fields=args.get('fields') or None,
+            fields=fields,
             offset=int(args.get('offset') or 0),
             limit=limit,
             order=args.get('order') or None,
         )
+        records = self._strip_source_code(records, model_name=model_name)
         return {'count': len(records), 'records': records}
 
     def _tool_read(self, args):
-        model = self._get_model(args['model'])
-        records = model.browse(args['ids']).exists().read(args.get('fields') or None)
+        model_name = args['model']
+        model = self._get_model(model_name)
+        fields = args.get('fields') or None
+        if fields:
+            fields = [f for f in fields if f != 'arch_fs']
+        records = model.browse(args['ids']).exists().read(fields)
+        records = self._strip_source_code(records, model_name=model_name)
         return {'count': len(records), 'records': records}
 
     def _tool_count(self, args):
@@ -517,14 +572,18 @@ class McpToolExecutor(models.AbstractModel):
         return {'count': len(allowed), 'models': allowed}
 
     def _tool_create(self, args):
-        model = self._get_model(args['model'])
-        record = model.create(args['values'])
+        model_name = args['model']
+        model = self._get_model(model_name)
+        values = self._reject_source_code_values(args['values'], model_name=model_name)
+        record = model.create(values)
         return {'id': record.id, 'display_name': record.display_name}
 
     def _tool_write(self, args):
-        model = self._get_model(args['model'])
+        model_name = args['model']
+        model = self._get_model(model_name)
+        values = self._reject_source_code_values(args['values'], model_name=model_name)
         records = model.browse(args['ids']).exists()
-        records.write(args['values'])
+        records.write(values)
         return {'updated_ids': records.ids, 'count': len(records)}
 
     def _tool_unlink(self, args):
@@ -538,6 +597,9 @@ class McpToolExecutor(models.AbstractModel):
         model = self._get_model(args['model'])
         method = args['method']
         if method.startswith('_') or method in BLOCKED_METHODS:
+            if method in ('get_module_info', 'get_module_path'):
+                raise UserError(_(
+                    "Privacy: module source code is not available through MCP."))
             raise UserError(_("Method '%s' is not allowed.") % method)
         if not hasattr(model, method):
             raise UserError(_("Model '%s' has no method '%s'.") % (args['model'], method))
