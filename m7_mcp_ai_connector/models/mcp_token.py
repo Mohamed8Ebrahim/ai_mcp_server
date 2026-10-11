@@ -129,10 +129,19 @@ class McpToken(models.Model):
         help="The base MCP endpoint URL of this server; the full secret is only "
              "shown once when you generate the token.")
 
+    def _public_base_url(self):
+        ICP = self.env['ir.config_parameter'].sudo()
+        base = (ICP.get_param('m7_mcp_ai_connector.public_base_url')
+                or ICP.get_param('web.base.url')
+                or '')
+        return base.rstrip('/')
+
     def _compute_endpoint_url(self):
-        base = (self.env['ir.config_parameter'].sudo().get_param('web.base.url', '') or '').rstrip('/')
+        base = self._public_base_url()
+        dbname = self.env.cr.dbname
         for rec in self:
-            rec.endpoint_url = base + '/mcp'
+            # db query hint keeps header-based clients working on multi-db hosts.
+            rec.endpoint_url = '%s/mcp?db=%s' % (base, dbname) if base else ''
 
     def _compute_log_count(self):
         data = self.env['mcp.log']._read_group(
