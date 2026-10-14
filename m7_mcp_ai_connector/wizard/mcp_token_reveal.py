@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.addons.m7_mcp_ai_connector.services.urls import get_public_base_url
 
 
 class McpTokenReveal(models.TransientModel):
@@ -34,12 +35,7 @@ class McpTokenReveal(models.TransientModel):
              "to this server over Streamable HTTP with the token as a header.")
 
     def _public_base_url(self):
-        ICP = self.env['ir.config_parameter'].sudo()
-        # Prefer an explicit public/tunnel URL; do not fall back to web.base.url
-        # (often http://localhost) because AI connectors need a reachable host.
-        base = (ICP.get_param('m7_mcp_ai_connector.public_base_url')
-                or 'https://kamron-heroic-dorie.ngrok-free.dev')
-        return base.rstrip('/')
+        return get_public_base_url(self.env)
 
     @api.depends('raw_token')
     def _compute_urls(self):
