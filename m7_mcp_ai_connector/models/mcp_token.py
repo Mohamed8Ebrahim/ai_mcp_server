@@ -5,6 +5,7 @@ from datetime import timedelta
 
 from odoo import api, fields, models, _
 from odoo.exceptions import UserError, ValidationError
+from odoo.addons.m7_mcp_ai_connector.services.urls import get_public_base_url
 
 _logger = logging.getLogger(__name__)
 
@@ -130,11 +131,7 @@ class McpToken(models.Model):
              "shown once when you generate the token.")
 
     def _public_base_url(self):
-        ICP = self.env['ir.config_parameter'].sudo()
-        base = (ICP.get_param('m7_mcp_ai_connector.public_base_url')
-                or ICP.get_param('web.base.url')
-                or '')
-        return base.rstrip('/')
+        return get_public_base_url(self.env)
 
     def _compute_endpoint_url(self):
         base = self._public_base_url()

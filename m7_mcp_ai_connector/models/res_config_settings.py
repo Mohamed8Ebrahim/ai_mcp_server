@@ -1,5 +1,5 @@
 from odoo import api, fields, models
-
+from odoo.addons.m7_mcp_ai_connector.services.urls import get_public_base_url
 
 class ResConfigSettings(models.TransientModel):
     _inherit = 'res.config.settings'
@@ -36,6 +36,6 @@ class ResConfigSettings(models.TransientModel):
         help="The MCP endpoint URL to configure inside your AI client.")
 
     def _compute_endpoint_url(self):
-        base = self.env['ir.config_parameter'].sudo().get_param('web.base.url', '')
+        base = get_public_base_url(self.env)
         for rec in self:
-            rec.mcp_endpoint_url = (base or '').rstrip('/') + '/mcp'
+            rec.mcp_endpoint_url = (base + '/mcp') if base else ''
