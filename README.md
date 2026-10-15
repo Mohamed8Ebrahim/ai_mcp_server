@@ -129,7 +129,8 @@ m7_mcp_ai_connector/
 
 ## Versions
 
-This branch targets **Odoo 18**. Other Odoo versions live in the `13.0`, `18.0` and
+This branch targets **Odoo 18**. Other Odoo versions live in the `13.0`, `17.0` and
+`19.0` branches.
 
 ## License
 
